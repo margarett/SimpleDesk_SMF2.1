@@ -1,0 +1,43 @@
+/**********************************
+*		Admin panel icons		  *
+***********************************/
+
+.large_admin_menu_icon.shd_simpledesk{
+	background: url(../images/admin/shd/simpledesk.png) no-repeat;
+	background-size: 32px 32px;
+}
+
+.large_admin_menu_icon.shd_options{
+	background: url(../images/admin/shd/options.png) no-repeat;
+	background-size: 32px 32px;
+}
+
+.large_admin_menu_icon.shd_cannedreplies{
+	background: url(../images/admin/shd/cannedreplies.png) no-repeat;
+	background-size: 32px 32px;
+}
+
+.large_admin_menu_icon.shd_custom_fields{
+	background: url(../images/admin/shd/custom_fields.png) no-repeat;
+	background-size: 32px 32px;
+}
+
+.large_admin_menu_icon.shd_departments{
+	background: url(../images/admin/shd/departments.png) no-repeat;
+	background-size: 32px 32px;
+}
+
+.large_admin_menu_icon.shd_permissions{
+	background: url(../images/admin/shd/permissions.png) no-repeat;
+	background-size: 32px 32px;
+}
+
+.large_admin_menu_icon.shd_plugins{
+	background: url(../images/admin/shd/plugins.png) no-repeat;
+	background-size: 32px 32px;
+}
+
+.large_admin_menu_icon.shd_maintenance{
+	background: url(../images/admin/shd/maintenance.png) no-repeat;
+	background-size: 32px 32px;
+}
