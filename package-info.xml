@@ -59,7 +59,7 @@
 		<!-- database changes -->
 		<database>install.php</database>
 
-		<redirect url="?action=admin;area=corefeatures#js_feature_shd" />
+		<redirect url="?action=admin;area=helpdesk_info;sa=main" />
 	</install>
 
 	<uninstall for="2.1 alpha 1">
