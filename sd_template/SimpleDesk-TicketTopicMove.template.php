@@ -26,14 +26,10 @@ function template_shd_tickettotopic()
 {
 	global $txt, $settings, $context, $scripturl, $modSettings;
 
-	// Back to the helpdesk.
-	echo '
-		<div class="floatleft">
-			', template_button_strip(array($context['navigation']['back']), 'bottom'), '
-		</div><br class="clear" /><br />';
+	template_button_strip(array($context['navigation']['back']));
 
 	echo '
-		<div class="cat_bar grid_header">
+		<div class="cat_bar">
 			<h3 class="catbg">
 				<img src="', $settings['default_images_url'] , '/simpledesk/tickettotopic.png" alt="*" />
 				', $txt['shd_move_ticket_to_topic'], '
@@ -195,8 +191,7 @@ function template_shd_tickettotopic()
 				<input type="hidden" name="seqnum" value="', $context['form_sequence_number'], '" />
 			</div>
 		</form>
-		</div>
-		<span class="lowerframe"><span></span></span>';
+		</div>';
 }
 
 /**
@@ -214,7 +209,7 @@ function template_shd_topictoticket()
 {
 	global $txt, $settings, $context, $scripturl;
 	echo '
-		<div class="cat_bar grid_header">
+		<div class="cat_bar">
 			<h3 class="catbg">
 				<img src="', $settings['default_images_url'] , '/simpledesk/topictoticket.png" alt="*" />
 				', $txt['shd_move_topic_to_ticket'], '
@@ -297,7 +292,6 @@ function template_shd_topictoticket()
 				<input type="hidden" name="seqnum" value="', $context['form_sequence_number'], '" />
 			</div>
 		</form>
-		</div>
-		<span class="lowerframe"><span></span></span>';
+		</div>';
 }
 

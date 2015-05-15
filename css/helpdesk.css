@@ -1,20 +1,6 @@
 /**********************************
 * General stuff used all around the helpdesk 	*
 ***********************************/
-
-/* Half rounded headers */
-div.grid_header
-{
-	height: 28px;
-	margin-bottom: -1px;
-}
-
-/* You no left float, Core! */
-div.grid_header img
-{
-	float: none;
-}
-
 /* SimpleDesk icons */
 .shd_smallicon
 {
@@ -48,11 +34,6 @@ div.grid_header img
 	margin-top: -3px;
 }
 
-.shd_nowrap
-{
-	white-space: nowrap;
-}
-
 .shd_no_margin
 {
 	margin: 0;
@@ -63,24 +44,6 @@ div.grid_header img
 	border-bottom: 0;
 }
 
-/**********************************
-* The ticket listings 				*
-***********************************/
-.shd_ticketlist
-{
-	width: 100%;
-	border: solid #BBBBBB;
-	border-width: 1px 1px 0;
-}
-.shd_ticketlist td
-{
-	padding: 5px;
-	border-bottom: 1px solid #AFAFAF;
-}
-.shd_noticket
-{
-	text-align: center;
-}
 .shd_staffresources ul
 {
 	list-style-type: none;
@@ -92,12 +55,10 @@ div.grid_header img
 	margin-bottom: 3px;
 }
 
-.shd_gototicket
-{
+.shd_gototicket {
 	display: block;
 	float: right;
 	margin-left: 1em;
-	white-space: nowrap;
 }
 
 .shd_assignees
@@ -151,12 +112,11 @@ h3.ticketheader img
 .shd_ticket_side_column
 {
 	float: left;
-	width: 215px;
+	width: 20%;
 	margin-right: 20px;
+	padding: 5px;
 }
-.shd_ticketdetails
-{
-	min-height: 280px;
+.shd_ticketdetails {
 	overflow: auto;
 	float: left;
 	width: 100%;
@@ -190,12 +150,8 @@ h3.ticketheader img
 {
 	min-height: 250px;
 }
-.shd_ticket_description
-{
-	padding-top: 9px;
-	padding-bottom: 45px;
+.shd_ticket_description {
 	margin-left: 260px;
-	min-height: 200px;
 }
 
 #shd_ticket_text
@@ -580,4 +536,9 @@ ul.shd_profile_nav_list, ul.shd_profile_nav_inline
 	/* Webkit's default stylesheet also, just for giggles, adds margin-before and margin-after to lists. */
 	-webkit-margin-before: 0;
 	-webkit-margin-after: 0;
+}
+
+.bot_page {
+	border: 1px solid #DDD;
+	border-top: none;
 }
