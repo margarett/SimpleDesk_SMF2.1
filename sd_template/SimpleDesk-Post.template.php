@@ -800,21 +800,17 @@ function template_ticket_do_replies()
 				<img src="', $settings['default_images_url'], '/simpledesk/replies.png" alt="x" /> ', $txt['shd_ticket_replies'], '
 			</h3>
 		</div>
-		<div class="roundframe" id="replies">
-			<div class="content">';
+		<div id="replies" class="content">';
 
 	if (!empty($reply_request))
 	{
 		while ($reply = $context['get_replies']())
 		{
 			echo '
-					<div class="description shd_reply" id="reply', $reply['id'], '">
-								<span class="floatleft shd_posterinfo">
-									<strong class="shd_postername">
-										', $reply['member']['link'], '
-									</strong>
-									<br />
-									', $reply['member']['group'], '<br class="shd_groupmargin" />';
+					<div class="windowbg" id="reply', $reply['id'], '">
+						<div class="poster">
+							<h4>', $reply['member']['link'], '</h4>
+								', $reply['member']['group'], '<br class="shd_groupmargin" />';
 
 			if (!empty($modSettings['shd_display_avatar']) && empty($options['show_no_avatars']) && !empty($reply['member']['avatar']['image']))
 					echo '
@@ -828,8 +824,8 @@ function template_ticket_do_replies()
 							<img src="', $settings['default_images_url'] . '/simpledesk/staff.png" class="shd_smallicon" title="', $txt['shd_ticket_staff'], '" alt="', $txt['shd_ticket_staff'], '" />';
 
 			echo '
-						</span>
-						<div class="shd_replyarea">
+						</div>
+						<div class="postarea">
 							<div class="smalltext">
 								<span class="floatright shd_ticketlinks">';
 

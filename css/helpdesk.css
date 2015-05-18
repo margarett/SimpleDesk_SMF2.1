@@ -333,11 +333,6 @@ h3.ticketheader img
 /**********************************
 * Ticket replies				 *
 ***********************************/
-.shd_reply
-{
-	padding-bottom: 32px;
-	padding-top: 12px;
-}
 .shd_posterinfo
 {
 	width: 14em;
@@ -425,10 +420,6 @@ h3.ticketheader img
 {
 	margin-left: -8px;
 	margin-right: 3px;
-}
-.shd_attachmentbox
-{
-	padding: 10px;
 }
 .shd_attachmentcolumn
 {
@@ -531,14 +522,11 @@ h3.ticketheader img
 	border-right: none;
 }
 
-ul.shd_profile_nav_list, ul.shd_profile_nav_inline
-{
-	/* Webkit's default stylesheet also, just for giggles, adds margin-before and margin-after to lists. */
-	-webkit-margin-before: 0;
-	-webkit-margin-after: 0;
-}
-
+/* I'm not sure about the above, I'll rewrite them later */
 .bot_page {
 	border: 1px solid #DDD;
 	border-top: none;
+}
+#ticket_log_header {
+	clear: both;
 }
