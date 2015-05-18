@@ -57,6 +57,7 @@ function shd_post_ticket()
 	// Things we need
 	loadTemplate('sd_template/SimpleDesk-Post');
 	require_once($sourcedir . '/sd_source/Subs-SimpleDeskPost.php');
+	require_once($sourcedir . '/Subs-Attachments.php');
 	require_once($sourcedir . '/Subs-Post.php');
 	require_once($sourcedir . '/Subs-Editor.php');
 
@@ -1588,22 +1589,15 @@ function shd_check_attachments()
 
 	if (empty($context['current_attachments']))
 		$context['current_attachments'] = array();
+		
+	// Handle new attachments folders in 2.1
+	$upload_dirs = unserialize($modSettings['attachmentUploadDir']);
+	$current_attach_dir = $upload_dirs[$modSettings['currentAttachmentUploadDir']];
 
 	if (shd_allowed_to('shd_post_attachment', $context['ticket_form']['dept']))
 	{
 		if (empty($_SESSION['temp_attachments']))
 			$_SESSION['temp_attachments'] = array();
-
-		if (!empty($modSettings['currentAttachmentUploadDir']))
-		{
-			if (!is_array($modSettings['attachmentUploadDir']))
-				$modSettings['attachmentUploadDir'] = unserialize($modSettings['attachmentUploadDir']);
-
-			// Just use the current path for temp files.
-			$current_attach_dir = $modSettings['attachmentUploadDir'][$modSettings['currentAttachmentUploadDir']];
-		}
-		else
-			$current_attach_dir = $modSettings['attachmentUploadDir'];
 
 		// If this isn't a new post, check the current attachments.
 		if (($modSettings['shd_attachments_mode'] == 'ticket' && !empty($context['ticket_id'])) || isset($context['ticket_form']['msg']))
@@ -1774,6 +1768,13 @@ function shd_handle_attachments()
 
 	if (!shd_allowed_to('shd_post_attachment', $context['ticket_form']['dept']))
 		return;
+		
+	if (!function_exists('createAttachment'))
+		require_once($sourcedir . '/Subs-Attachments.php');
+
+	// Handle new attachments folders in 2.1
+	$upload_dirs = unserialize($modSettings['attachmentUploadDir']);
+	$current_attach_dir = $upload_dirs[$modSettings['currentAttachmentUploadDir']];
 
 	$attachIDs = array();
 
@@ -1850,18 +1851,6 @@ function shd_handle_attachments()
 			$_FILES = array_reverse($_FILES);
 
 		shd_is_allowed_to('shd_post_attachment');
-
-		// Make sure we're uploading to the right place.
-		if (!empty($modSettings['currentAttachmentUploadDir']))
-		{
-			if (!is_array($modSettings['attachmentUploadDir']))
-				$modSettings['attachmentUploadDir'] = unserialize($modSettings['attachmentUploadDir']);
-
-			// The current directory, of course!
-			$current_attach_dir = $modSettings['attachmentUploadDir'][$modSettings['currentAttachmentUploadDir']];
-		}
-		else
-			$current_attach_dir = $modSettings['attachmentUploadDir'];
 
 		// If this isn't a new post, check the current attachments.
 		if (isset($_REQUEST['msg']) || !empty($context['ticket_id']))
@@ -1940,6 +1929,8 @@ function shd_handle_attachments()
 				'name' => $uplfile['name'],
 				'tmp_name' => $uplfile['tmp_name'],
 				'size' => $uplfile['size'],
+				'approved' => 1,
+				'id_folder' => $modSettings['currentAttachmentUploadDir'],
 			);
 
 			if (createAttachment($attachmentOptions))
