@@ -41,11 +41,10 @@ function template_shd_departments_home()
 							<td colspan="3" width="1%" class="shd_nowrap">', $txt['shd_actions'], '</td>
 						</tr>';
 
-	$use_bg2 = true;
 	foreach ($context['shd_departments'] as $department)
 	{
 		echo '
-						<tr class="windowbg', $use_bg2 ? '2' : '', '">
+						<tr class="windowbg">
 							<td></td>
 							<td>
 								', $department['dept_name'], '
@@ -92,7 +91,6 @@ function template_shd_departments_home()
 
 		echo '
 						</tr>';
-		$use_bg2 = !$use_bg2;
 	}
 
 	echo '
@@ -261,18 +259,15 @@ function template_shd_edit_dept()
 								<td>', $txt['shd_assign_dept'], '</td>
 							</tr>';
 
-	$use_bg2 = true;
 	if (!empty($context['shd_roles']))
 	{
 		foreach ($context['shd_roles'] as $id_role => $role)
 		{
 			echo '
-							<tr class="', ($use_bg2 ? 'windowbg2' : 'windowbg'), '">
+							<tr class="windowbg">
 								<td><img src="', $settings['default_images_url'], '/simpledesk/', $context['shd_permissions']['roles'][$role['template']]['icon'], '"> <a href="', $scripturl, '?action=admin;area=helpdesk_permissions;sa=editrole;role=', $role['id_role'], '">', $role['role_name'], '</a></td>
 								<td><input type="checkbox" class="input_check" name="role', $id_role, '"', !empty($role['in_dept']) ? ' checked="checked"' : '', ' /></td>
 							</tr>';
-
-			$use_bg2 = !$use_bg2;
 		}
 	}
 	else

@@ -47,11 +47,10 @@ function template_shd_custom_field_home()
 						</tr>';
 	else
 	{
-		$use_bg2 = true;
 		foreach ($context['custom_fields'] as $field)
 		{
 			echo '
-						<tr class="', ($use_bg2 ? 'windowbg2' : 'windowbg'), '">
+						<tr class="windowbg">
 							<td width="2%">', empty($field['icon']) ? '' : '<img src="' . $settings['default_images_url'] . '/simpledesk/cf/' . $field['icon'] . '" class="icon" alt="*" />', '</td>
 							<td>', $field['field_name'], '<br /><span class="smalltext">', $field['field_desc'], '</span></td>
 							<td width="2%"><img src="' . $settings['default_images_url'] . '/simpledesk/cf_ui_' . $field['field_type'] . '.png" class="icon" alt="', $txt['shd_admin_custom_fields_ui_' . $field['field_type']], '" /></td>
@@ -79,8 +78,6 @@ function template_shd_custom_field_home()
 								<a href="', $scripturl, '?action=admin;area=helpdesk_customfield;sa=save;field=', $field['id_field'], ';delete;', $context['session_var'], '=', $context['session_id'], '" onclick="return confirm(' . JavaScriptEscape($txt['shd_admin_delete_custom_field_confirm']). ');"><img src="', $settings['default_images_url'], '/simpledesk/delete.png" class="icon" alt="', $txt['shd_ticket_delete'],'" title="', $txt['shd_ticket_delete'], '" /></a>
 							</td>
 						</tr>';
-
-			$use_bg2 = !$use_bg2;
 		}
 	}
 

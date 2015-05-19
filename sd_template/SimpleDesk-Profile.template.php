@@ -457,11 +457,10 @@ function template_shd_profile_show_notify_override()
 	}
 	else
 	{
-		$use_bg2 = true;
 		foreach ($context['tickets'] as $ticket)
 		{
 			echo '
-						<tr class="windowbg', $use_bg2 ? '2' : '', '">
+						<tr class="windowbg">
 							<td width="4%" class="smalltext">', $ticket['id_ticket_display'], '</td>
 							<td class="smalltext"><a href="', $scripturl, '?action=helpdesk;sa=ticket;ticket=', $ticket['id_ticket'], '">', $ticket['subject'], '</a></td>
 							<td class="smalltext">', $ticket['ticket_starter'], '</td>
@@ -470,8 +469,6 @@ function template_shd_profile_show_notify_override()
 							<td class="smalltext">', $txt['shd_urgency_' . $ticket['urgency']], '</td>
 							<td class="smalltext">', $ticket['updated'], '</td>
 						</tr>';
-
-			$use_bg2 = !$use_bg2;
 		}
 	}
 
@@ -561,11 +558,10 @@ function template_shd_profile_permissions()
 	}
 	else
 	{
-		$use_bg2 = true;
 		foreach ($context['member_roles'] as $role)
 		{
 			echo '
-						<tr class="', ($use_bg2 ? 'windowbg2' : 'windowbg'), '">
+						<tr class="windowbg">
 							<td>', !empty($context['shd_permissions']['roles'][$role['template']]['icon']) ? ('<img src="' . $settings['default_images_url'] . '/simpledesk/' . $context['shd_permissions']['roles'][$role['template']]['icon'] . '" alt="" />') : '', '</td>
 							<td>', $role['name'], '</td>
 							<td>';
@@ -582,7 +578,6 @@ function template_shd_profile_permissions()
 
 			echo '</td>
 						</tr>';
-			$use_bg2 = !$use_bg2;
 		}
 	}
 
@@ -612,7 +607,6 @@ function template_shd_profile_permissions()
 						</tr>';
 
 		// Right, we're going to go by what's in the master list first.
-		$use_bg2 = true;
 		$last_permission_cat = '';
 
 		foreach ($context['shd_permissions']['permission_list'] as $permission => $details)
@@ -651,7 +645,7 @@ function template_shd_profile_permissions()
 			}
 
 			echo '
-						<tr class="', ($use_bg2 ? 'windowbg2' : 'windowbg'), '">
+						<tr class="windowbg">
 							<td><img src="', shd_image_url($icon), '" alt="" /></td>';
 
 			if ($ownany)
@@ -693,8 +687,6 @@ function template_shd_profile_permissions()
 			echo '
 							</td>
 						</tr>';
-
-			$use_bg2 = !$use_bg2;
 		}
 
 		echo '
@@ -737,19 +729,16 @@ function template_shd_profile_actionlog()
 						</tr>';
 	else
 	{
-		$use_bg2 = true; // start with windowbg2 to differentiate between that and windowbg2
 		foreach ($context['action_log'] as $action)
 		{
 			echo '
-						<tr class="', ($use_bg2 ? 'windowbg2' : 'windowbg'), '">
+						<tr class="windowbg">
 							<td class="smalltext">', $action['time'], '</td>
 							<td class="smalltext">
 								<img src="', $settings['default_images_url'], '/simpledesk/', $action['action_icon'], '" alt="" class="shd_smallicon" />
 								', $action['action_text'], '
 							</td>
 						</tr>';
-
-			$use_bg2 = !$use_bg2;
 		}
 	}
 

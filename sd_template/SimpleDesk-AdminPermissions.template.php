@@ -45,11 +45,10 @@ function template_shd_permissions_home()
 							<td colspan="', count($context['shd_permissions']['group_display']), '">', $txt['shd_permissions'], '</td>
 						</tr>';
 
-	$use_bg2 = true;
 	foreach ($context['shd_permissions']['roles'] as $role_id => $role_details)
 	{
 		echo '
-						<tr class="', ($use_bg2 ? 'windowbg2' : 'windowbg'), '">
+						<tr class="windowbg">
 							<td>', !empty($role_details['icon']) ? ('<img src="' . $settings['default_images_url'] . '/simpledesk/' . $role_details['icon'] . '" alt="" />') : '', '</td>
 							<td>
 								', $txt[$role_details['description']], '
@@ -57,8 +56,6 @@ function template_shd_permissions_home()
 							</td>
 							', template_shd_display_permission_list($role_details['permissions']), '
 						</tr>';
-
-		$use_bg2 = !$use_bg2;
 	}
 
 	echo '
@@ -92,11 +89,10 @@ function template_shd_permissions_home()
 	}
 	else
 	{
-		$use_bg2 = true;
 		foreach ($context['shd_permissions']['user_defined_roles'] as $role => $role_details)
 		{
 			echo '
-						<tr class="', ($use_bg2 ? 'windowbg2' : 'windowbg'), '">
+						<tr class="windowbg">
 							<td>', !empty($role_details['template_icon']) ? ('<img src="' . $settings['default_images_url'] . '/simpledesk/' . $role_details['template_icon'] . '" alt="" title="' . sprintf($txt['shd_based_on'], $role_details['template_name']) . '" />') : '', '</td>
 							<td>
 								', $role_details['name'], '
@@ -127,7 +123,6 @@ function template_shd_permissions_home()
 
 			echo '
 						</tr>';
-			$use_bg2 = !$use_bg2;
 		}
 	}
 
@@ -466,11 +461,10 @@ function template_shd_edit_role()
 								<td>', $txt['shd_assign_group'], '</td>
 							</tr>';
 
-	$use_bg2 = true;
 	foreach ($context['membergroups'] as $id_group => $group)
 	{
 		echo '
-							<tr class="', ($use_bg2 ? 'windowbg2' : 'windowbg'), '">
+							<tr class="windowbg">
 								<td>', $group['link'], '</td>
 								<td>';
 
@@ -484,8 +478,6 @@ function template_shd_edit_role()
 		echo '</td>
 								<td><input type="checkbox" class="input_check" name="group', $id_group, '"', (in_array($id_group, $context['role_groups']) ? ' checked="checked"' : ''), ' /></td>
 							</tr>';
-
-		$use_bg2 = !$use_bg2;
 	}
 
 	echo '
@@ -509,15 +501,13 @@ function template_shd_edit_role()
 								<td width="50%">', $txt['shd_assign_dept'], '</td>
 							</tr>';
 
-	$use_bg2 = true;
 	foreach ($context['role_depts'] as $id_dept => $dept)
 	{
 		echo '
-							<tr class="', ($use_bg2 ? 'windowbg2' : 'windowbg'), '">
+							<tr class="windowbg">
 								<td>', $dept['dept_name'], '</td>
 								<td><input type="checkbox" class="input_check" name="dept', $id_dept, '"', !empty($dept['is_role']) ? ' checked="checked"' : '', ' /></td>
 							</tr>';
-		$use_bg2 = !$use_bg2;
 	}
 
 	echo '

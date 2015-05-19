@@ -642,11 +642,10 @@ function template_shd_action_log()
 						</tr>';
 			else
 			{
-				$use_bg2 = true; // start with windowbg2 to differentiate between that and windowbg2
 				foreach ($context['actions'] AS $action)
 				{
 					echo '
-						<tr class="', ($use_bg2 ? 'windowbg2' : 'windowbg'), '">
+						<tr class="windowbg">
 							<td width="1%" class="shd_nowrap">
 								<img src="', shd_image_url($action['action_icon']), '" alt="" class="shd_smallicon" />
 							</td>
@@ -657,8 +656,6 @@ function template_shd_action_log()
 							<td>', !empty($action['member']['ip']) ? $action['member']['ip'] : $txt['shd_admin_actionlog_hidden'], '</td>
 							<td>', $action['can_remove'] && $context['can_delete'] ? '<a href="' . $scripturl . '?action=admin;area=helpdesk_info;sa=actionlog;remove='. $action['id'] . '"><img src="' . $settings['default_images_url'] . '/simpledesk/delete.png" alt="' . $txt['shd_delete_item'] . '" /></a>' : '', '</td>
 						</tr>';
-
-					$use_bg2 = !$use_bg2;
 				}
 			}
 
