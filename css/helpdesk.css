@@ -530,3 +530,11 @@ h3.ticketheader img
 #ticket_log_header {
 	clear: both;
 }
+
+/* Urgency stuff */
+.generic_icons.urgency_increase {
+	background-position: -161px -5px;
+}
+.generic_icons.urgency_decrease {
+	background-position: -213px -5px;
+}
