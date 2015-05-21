@@ -25,7 +25,7 @@ function template_shd_cannedreplies_home()
 							', $txt['shd_admin_cannedreplies_home'], '
 						</h3>
 					</div>
-					<p class="description">
+					<p class="information">
 						', $txt['shd_admin_cannedreplies_homedesc'], '
 					</p>
 				</div>';
@@ -126,7 +126,7 @@ function template_shd_edit_canned_category()
 							', $txt['shd_admin_cannedreplies_home'], '
 						</h3>
 					</div>
-					<p class="description">
+					<p class="information">
 						', $txt['shd_admin_cannedreplies_homedesc'], '
 					</p>
 				</div>
@@ -172,7 +172,7 @@ function template_shd_edit_canned_reply()
 							', $txt['shd_admin_cannedreplies_home'], '
 						</h3>
 					</div>
-					<p class="description">
+					<p class="information">
 						', $txt['shd_admin_cannedreplies_homedesc'], '
 					</p>
 				</div>
@@ -253,7 +253,7 @@ function template_shd_move_reply_cat()
 							', $txt['shd_admin_cannedreplies_home'], '
 						</h3>
 					</div>
-					<p class="description">
+					<p class="information">
 						', $txt['shd_admin_cannedreplies_homedesc'], '
 					</p>
 				</div>

@@ -1,26 +1,3 @@
-#sd_live_news
-{
-	width: 64%;
-	font-size: 0.85em;
-}
-#sd_live_news div.content
-{
-	padding: 0;
-}
-#sd_live_news div.content dl
-{
-	padding: 0.5em 0 0 0.5em;
-}
-
-#sd_supportVersionsTable
-{
-	width: 34%;
-}
-#sd_version_details
-{
-	overflow: auto;
-	height: 16.4em;
-}
 #sdAnnouncements
 {
 	height: 21.6em;

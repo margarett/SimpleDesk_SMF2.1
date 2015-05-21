@@ -25,7 +25,7 @@ function template_shd_departments_home()
 							', $txt['shd_admin_departments_home'], '
 						</h3>
 					</div>
-					<p class="description shd_actionloginfo">
+					<p class="information shd_actionloginfo">
 						', $txt['shd_admin_departments_homedesc'], '
 					</p>
 					<table class="shd_ticketlist" cellspacing="0" width="100%">
@@ -115,7 +115,7 @@ function template_shd_create_dept()
 							', $txt['shd_admin_departments_home'], '
 						</h3>
 					</div>
-					<p class="description">
+					<p class="information">
 						', $txt['shd_admin_departments_homedesc'], '
 					</p>
 				</div>
@@ -172,7 +172,7 @@ function template_shd_edit_dept()
 								', $txt['shd_admin_departments_home'], '
 							</h3>
 						</div>
-						<p class="description">
+						<p class="information">
 							', $txt['shd_admin_departments_homedesc'], '
 						</p>
 					</div>
@@ -247,7 +247,7 @@ function template_shd_edit_dept()
 								', $txt['shd_roles_in_dept'], '
 							</h3>
 						</div>
-						<p class="description shd_actionloginfo">
+						<p class="information shd_actionloginfo">
 							', $txt['shd_roles_in_dept_desc'], '
 						</p>
 						<table class="shd_ticketlist" cellspacing="0" width="100%">

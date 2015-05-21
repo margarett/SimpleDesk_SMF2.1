@@ -37,19 +37,19 @@ function template_shd_profile_main()
 				', $txt['shd_profile_tickets_assigned'], ': <a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=hd_showtickets">', $context['shd_numassigned'], '</a>
 				<br /><br />
 
-				<div class="description shd_showtickets floatright" id="shd_showtickets">
+				<div class="information shd_showtickets floatright" id="shd_showtickets">
 					<a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=hd_showtickets">', $txt['shd_profile_view_tickets'], '</a><br />
 				</div>';
 
 	if (!empty($context['can_post_proxy']))
 		echo '
-				<div class="description shd_showtickets floatright" id="shd_post_proxy">
+				<div class="information shd_showtickets floatright" id="shd_post_proxy">
 					<a href="', $scripturl, '?action=helpdesk;sa=newticket;proxy=', $context['member']['id'], '">', $txt['shd_profile_proxy'], '</a><br />
 				</div>';
 
 	if (!empty($context['can_post_ticket']))
 		echo '
-				<div class="description shd_showtickets floatright" id="shd_post_ticket">
+				<div class="information shd_showtickets floatright" id="shd_post_ticket">
 					<a href="', $scripturl, '?action=helpdesk;sa=newticket">', $txt['shd_profile_newticket'], '</a><br />
 				</div>';
 
@@ -358,7 +358,7 @@ function template_shd_profile_show_tickets()
 							', sprintf($txt['shd_profile_show_tickets_header'], $context['member']['name']), '
 						</h3>
 					</div>
-					<p class="description">', $txt['shd_profile_show_tickets_description'], '</p>
+					<p class="information">', $txt['shd_profile_show_tickets_description'], '</p>
 				</div>';
 
 	// The navigation.
@@ -391,7 +391,7 @@ function template_shd_profile_show_tickets()
 					</div>
 					<div class="list_posts">
 						', $item['body'], '
-						<div class="description shd_replybutton floatright" id="shd_replybutton">
+						<div class="information shd_replybutton floatright" id="shd_replybutton">
 							<a href="', $scripturl, '?action=helpdesk;sa=ticket;ticket=', $item['ticket'], '.0">', $txt['shd_profile_view_full_ticket'], '</a><br />
 						</div>
 					</div>
@@ -424,7 +424,7 @@ function template_shd_profile_show_notify_override()
 							', $txt['shd_profile_show_' . $context['notify_type'] . '_header'], '
 						</h3>
 					</div>
-					<p class="description">', $txt['shd_profile_show_' . $context['notify_type'] . '_description'], '</p>
+					<p class="information">', $txt['shd_profile_show_' . $context['notify_type'] . '_description'], '</p>
 				</div>';
 
 	// The navigation.
@@ -488,7 +488,7 @@ function template_shd_profile_permissions()
 	{
 		// Whoa, this dude's special. Tidy up and BAIL!
 		echo '
-					<p class="description">
+					<p class="information">
 						', $txt['shd_profile_permissions_all_admin'], '
 					</p>
 				</div>';
@@ -497,7 +497,7 @@ function template_shd_profile_permissions()
 
 	// Regular user: carry on, sergeant.
 	echo '
-					<p class="description">
+					<p class="information">
 						', $txt['shd_profile_permissions_description'], '
 					</p>
 				</div>';
@@ -533,7 +533,7 @@ function template_shd_profile_permissions()
 							', $txt['shd_roles'], '
 						</h3>
 					</div>
-					<p class="description shd_actionloginfo">
+					<p class="information shd_actionloginfo">
 						', $txt['shd_profile_roles_assigned'], '
 					</p>
 					<table class="shd_ticketlist" cellspacing="0" width="100%">
@@ -590,7 +590,7 @@ function template_shd_profile_permissions()
 							', $txt['shd_profile_granted'], '
 						</h3>
 					</div>
-					<p class="description shd_actionloginfo">
+					<p class="information shd_actionloginfo">
 						', $txt['shd_profile_granted_desc'], '
 					</p>
 					<table class="shd_ticketlist" cellspacing="0" width="100%">

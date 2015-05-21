@@ -39,7 +39,7 @@ function template_shd_admin()
 
 	// Display the "live news" from simpledesk.net
 	echo '
-			<div id="sd_live_news" class="floatleft">
+			<div id="live_news" class="floatleft">
 				<div class="tborder">
 				<div class="cat_bar">
 					<h3 class="catbg">
@@ -48,7 +48,7 @@ function template_shd_admin()
 						<span class="righttext"><a href="', $scripturl, '?action=helpadmin;help=shd_admin_help_live" onclick="return reqWin(this.href);"><img src="', $settings['images_url'], '/helptopics.png" alt="', $txt['help'], '" /></a></span>
 					</h3>
 				</div>
-				<div class="windowbg">
+				<div class="windowbg nopadding">
 						<div class="content">
 							<div id="sdAnnouncements">', $txt['shd_no_connect'], '</div>
 						</div>
@@ -58,8 +58,7 @@ function template_shd_admin()
 
 	// Show the user version information from their server.
 	echo '
-			<div id="sd_supportVersionsTable" class="floatright">
-				<div class="tborder">
+			<div id="supportVersionsTable" class="floatright">
 				<div class="cat_bar">
 					<h3 class="catbg">
 						<img src="', $settings['default_images_url'], '/simpledesk/modification.png" alt="*" />
@@ -67,45 +66,38 @@ function template_shd_admin()
 						<span class="righttext"><a href="', $scripturl, '?action=helpadmin;help=shd_admin_help_modification" onclick="return reqWin(this.href);"><img src="', $settings['images_url'], '/helptopics.png" alt="', $txt['help'], '" /></a></span>
 					</h3>
 				</div>
-				<div class="windowbg">
-					<div class="content">
-						<div id="sd_version_details">
-							<img src="', $settings['default_images_url'], '/simpledesk/support.png" alt="*" class="shd_icon_minihead" /> <strong>', $txt['shd_need_support'], '</strong><br />
-							', sprintf($txt['shd_support_start_here'], $scripturl . '?action=admin;area=helpdesk_info;sa=support'), '<br />
-							<br />
-							<img src="', $settings['default_images_url'], '/simpledesk/versions.png" alt="*" class="shd_icon_minihead" /> <strong>', $txt['support_versions'], ':</strong><br />
-							', $txt['shd_your_version'], ':
-							<em id="yourVersion" class="shd_nowrap">', SHD_VERSION, '</em><br />
-							', $txt['shd_current_version'], ':
-							<em id="sdVersion" class="shd_nowrap">??</em><br /><br />
-							<img src="', $settings['default_images_url'], '/simpledesk/ticket.png" alt="*" class="shd_icon_minihead" /> <strong>', $txt['shd_ticket_information'], ':</strong><br />
-							', $txt['shd_total_tickets'], ':
-							<em id="totalTickets" class="shd_nowrap">
-								<a href="javascript: shd_ticket_total_information();" >', $context['total_tickets'], '</a>
-							</em>
-							<div id="shd_ticket_total_information" style="display: none;">
-								&nbsp;&nbsp;&nbsp;', $txt['shd_open_tickets'], ': <em>', $context['open_tickets'], '</em><br />
-								&nbsp;&nbsp;&nbsp;', $txt['shd_closed_tickets'], ': <em>', $context['closed_tickets'], '</em><br />
-								&nbsp;&nbsp;&nbsp;', $txt['shd_recycled_tickets'], ': <em>', $context['recycled_tickets'], '</em><br />
-							</div>
-							<br />';
+				<div class="windowbg nopadding">
+					<div class="padding">
+						<img src="', $settings['default_images_url'], '/simpledesk/support.png" alt="*" class="shd_icon_minihead" /> <strong>', $txt['shd_need_support'], '</strong><br />
+						', sprintf($txt['shd_support_start_here'], $scripturl . '?action=admin;area=helpdesk_info;sa=support'), '<br />
+						<img src="', $settings['default_images_url'], '/simpledesk/versions.png" alt="*" class="shd_icon_minihead" /> <strong>', $txt['support_versions'], ':</strong><br />
+						', $txt['shd_your_version'], ':
+						<em id="yourVersion" class="shd_nowrap">', SHD_VERSION, '</em><br />
+						', $txt['shd_current_version'], ':
+						<em id="sdVersion" class="shd_nowrap">??</em><br /><br />
+						<img src="', $settings['default_images_url'], '/simpledesk/ticket.png" alt="*" class="shd_icon_minihead" /> <strong>', $txt['shd_ticket_information'], ':</strong><br />
+						', $txt['shd_total_tickets'], ':
+						<em id="totalTickets" class="shd_nowrap">
+							<a href="javascript: shd_ticket_total_information();" >', $context['total_tickets'], '</a>
+						</em>
+						<div id="shd_ticket_total_information" style="display: none;">
+							&nbsp;&nbsp;&nbsp;', $txt['shd_open_tickets'], ': <em>', $context['open_tickets'], '</em><br />
+							&nbsp;&nbsp;&nbsp;', $txt['shd_closed_tickets'], ': <em>', $context['closed_tickets'], '</em><br />
+							&nbsp;&nbsp;&nbsp;', $txt['shd_recycled_tickets'], ': <em>', $context['recycled_tickets'], '</em><br />
+						</div>';
 
 	// Display all the members who can manage the helpdesk.
 	// NOTE: This is currently (15/1/10) uncapped, meaning it's just the full list direct from SimpleDesk-Admin.php.
 	// That gets the data. Up to here how it should be displayed.
 	echo '
-							<br />
-							<img src="', $settings['default_images_url'], '/simpledesk/staff.png" alt="*" class="shd_icon_minihead" /> <strong>', $txt['shd_staff_list'], ':</strong>
-							', implode(', ', $context['staff']);
+						<img src="', $settings['default_images_url'], '/simpledesk/staff.png" alt="*" class="shd_icon_minihead" /> <strong>', $txt['shd_staff_list'], ':</strong>
+						', implode(', ', $context['staff']);
 
 	echo '
-						</div>
 					</div>
 				</div>
 			</div>
-			</div>
-		</div>
-		<div class="shd_credits_break">&nbsp;</div>';
+		</div>';
 
 
 	echo '
@@ -130,7 +122,7 @@ function template_shd_admin()
 				foreach ($section['groups'] as $group)
 				{
 					echo '
-						<div class="description">';
+						<div class="information">';
 
 					// Pretty icons! :D
 					if (isset($group['icon']))
@@ -354,7 +346,7 @@ function template_shd_show_settings()
 			else
 			{
 				echo '
-					<p class="description">
+					<p class="information">
 						', $config_var['label'], '
 					</p>';
 			}
@@ -589,8 +581,8 @@ function template_shd_action_log()
 							', $txt['shd_admin_actionlog_title'], '
 						</h3>
 					</div>
-					<table class="shd_ticketlist" cellspacing="0" width="100%">
-						<tr class="titlebg">
+					<table class="table_grid">
+						<tr class="title_bar">
 							<td width="38%" colspan="2">
 								<img src="', $settings['default_images_url'], '/simpledesk/action.png" class="shd_smallicon" alt="" />
 								<a href="', $scripturl, '?action=admin;area=helpdesk_info;sa=actionlog', $context['sort'] == $sort_types['action'] && !isset($_REQUEST['asc']) ? ';sort=action;asc' : ';sort=action', '">
@@ -700,20 +692,15 @@ function template_shd_support()
 		</div>
 	</div>
 	<div class="shd_admin_rightcolumn floatleft">
-		<div class="tborder">
-			<div class="title_bar">
-				<h3 class="titlebg sd_no_margin">
-					<img src="', $settings['images_url'], '/helptopics.png" alt="?" /> ', $txt['shd_admin_support_what_is_this'], '
-				</h3>
-			</div>
-			<div class="windowbg2">
-				<div class="content smalltext">
-					', $txt['shd_admin_support_explanation'], '
-				</div>
-			</div>
+		<div class="cat_bar">
+			<h3 class="catbg">
+				<img src="', $settings['images_url'], '/helptopics.png" alt="?" /> ', $txt['shd_admin_support_what_is_this'], '
+			</h3>
 		</div>
-	</div>
-	<br class="clear" />';
+		<div class="information smalltext">
+			', $txt['shd_admin_support_explanation'], '
+		</div>
+	</div>';
 }
 
 /**

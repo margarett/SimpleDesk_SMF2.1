@@ -321,13 +321,13 @@ function template_viewticket()
 			if ($context['can_reply'])
 				echo '
 						<br />
-						<div class="description shd_replybutton floatright" id="shd_replybutton">
+						<div class="information shd_replybutton floatright" id="shd_replybutton">
 							<a href="', $scripturl, '?action=helpdesk;sa=reply;ticket=', $context['ticket_id'], ';num_replies=', $context['ticket']['num_replies'], ';', $context['session_var'], '=', $context['session_id'], '">', $txt['shd_ticket_reply'], '</a><br />
 						</div>';
 
 			if ($context['can_quote'])
 				echo '
-						<div class="description shd_quotebutton floatright" id="shd_quotebutton">
+						<div class="information shd_quotebutton floatright" id="shd_quotebutton">
 							<a onclick="return oQuickReply.quote(', $context['ticket']['first_msg'], ', \'', $context['session_id'], '\', \'', $context['session_var'], '\', true);" href="', $scripturl, '?action=helpdesk;sa=reply;ticket=', $context['ticket_id'], ';quote=', $context['ticket']['first_msg'], ';num_replies=', $context['ticket']['num_replies'], ';', $context['session_var'], '=', $context['session_id'], '">', $txt['shd_ticket_quote'], '</a><br />
 						</div>';
 
@@ -445,7 +445,7 @@ function template_viewticketattach()
 		foreach ($context['ticket_attach']['ticket'] as $attachment)
 		{
 			echo '
-							<div class="description shd_attachment" id="attach', $attachment['id'], '">';
+							<div class="information shd_attachment" id="attach', $attachment['id'], '">';
 
 			if ($attachment['is_image'])
 			{
@@ -629,7 +629,7 @@ function template_additional_fields()
 				if ($field['display_empty'] || !empty($field['value']) || $field['type'] == CFIELD_TYPE_CHECKBOX)
 				{
 					echo '
-							<div class="description">
+							<div class="information">
 							', !empty($field['icon']) ? '<img src="' . $settings['default_images_url'] . '/simpledesk/cf/' . $field['icon'] . '" alt="" class="shd_smallicon" />' : '','
 							<strong>', $field['name'],':</strong><hr />';
 
@@ -697,7 +697,7 @@ function template_quickreply()
 		if ($context['can_go_advanced'])
 		{
 			echo '
-					<div class="description shd_advancedbutton floatright" id="shd_goadvancedbutton" style="display:none;">
+					<div class="information shd_advancedbutton floatright" id="shd_goadvancedbutton" style="display:none;">
 						<a onclick="goAdvanced(); return false;" href="', $scripturl, '?action=helpdesk;sa=reply;ticket=', $context['ticket_id'], ';', $context['session_var'], '=', $context['session_id'], '">', $txt['shd_go_advanced'], '</a><br />
 					</div>';
 		}
@@ -758,7 +758,7 @@ function template_inline_attachments($msg)
 			}
 
 			echo '
-									<td class="description">';
+									<td class="information">';
 
 			if ($attachment['is_image'])
 			{
