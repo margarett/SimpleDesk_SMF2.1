@@ -52,7 +52,6 @@ function template_shd_admin()
 						<div class="content">
 							<div id="sdAnnouncements">', $txt['shd_no_connect'], '</div>
 						</div>
-					<span class="botslice"><span></span></span>
 				</div>
 				</div>
 			</div>';
@@ -102,7 +101,6 @@ function template_shd_admin()
 	echo '
 						</div>
 					</div>
-					<span class="botslice"><span></span></span>
 				</div>
 			</div>
 			</div>

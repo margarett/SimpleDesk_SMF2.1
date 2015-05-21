@@ -284,8 +284,6 @@ function template_shd_custom_field_edit()
 							</dl>
 						</div>
 					</div>
-					<span class="lowerframe"><span></span></span>
-					<br />
 					<div class="cat_bar">
 						<h3 class="catbg">
 							<img src="', $settings['default_images_url'], '/simpledesk/fieldtype.png" alt="*" />
@@ -371,9 +369,7 @@ function template_shd_custom_field_edit()
 								</dd>
 							</dl>
 						</div>
-					</div>
-					<span class="lowerframe"><span></span></span>
-					<br />';
+					</div>';
 
 	if (!empty($context['dept_fields']))
 	{

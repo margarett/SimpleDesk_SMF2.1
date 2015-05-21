@@ -183,21 +183,18 @@ function template_shd_admin_maint_findrepairdone()
 		// Yay everything was fine.
 		echo '
 		<div class="windowbg">
-			<span class="topslice"><span></span></span>
 			<div class="content">
 				<p>', $txt['maintain_no_errors'], '</p>
 				<p class="padding">
 					<a href="', $scripturl, '?action=admin;area=helpdesk_maint;', $context['session_var'], '=', $context['session_id'], '">', $txt['shd_admin_maint_back'], '</a>
 				</p>
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>';
 	}
 	else
 	{
 		echo '
 		<div class="windowbg">
-			<span class="topslice"><span></span></span>
 			<div class="content">
 				<p>', $txt['errors_found'], '</p>';
 
@@ -230,7 +227,6 @@ function template_shd_admin_maint_findrepairdone()
 					<a href="', $scripturl, '?action=admin;area=helpdesk_maint;', $context['session_var'], '=', $context['session_id'], '">', $txt['shd_admin_maint_back'], '</a>
 				</p>
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>';
 	}
 }
@@ -241,14 +237,12 @@ function template_shd_admin_maint_reattributedone()
 
 	echo '
 		<div class="windowbg">
-			<span class="topslice"><span></span></span>
 			<div class="content">
 				<p>', $txt['shd_admin_maint_reattribute_success'], '</p>
 				<p class="padding">
 					<a href="', $scripturl, '?action=admin;area=helpdesk_maint;', $context['session_var'], '=', $context['session_id'], '">', $txt['shd_admin_maint_back'], '</a>
 				</p>
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>';
 }
 
@@ -259,14 +253,12 @@ function template_shd_admin_maint_massdeptmovedone()
 	echo '
 	<div id="admincenter">
 		<div class="windowbg">
-			<span class="topslice"><span></span></span>
 			<div class="content">
 				<p>', $txt['shd_admin_maint_massdeptmove_success'], '</p>
 				<p class="padding">
 					<a href="', $scripturl, '?action=admin;area=helpdesk_maint;', $context['session_var'], '=', $context['session_id'], '">', $txt['shd_admin_maint_back'], '</a>
 				</p>
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>
 	</div>';
 }
