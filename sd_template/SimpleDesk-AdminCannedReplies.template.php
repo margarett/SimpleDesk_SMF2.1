@@ -19,7 +19,7 @@ function template_shd_cannedreplies_home()
 
 	echo '
 				<div class="tborder">
-					<div class="cat_bar grid_header">
+					<div class="cat_bar">
 						<h3 class="catbg">
 							<img src="', $settings['default_images_url'], '/simpledesk/cannedreplies.png" class="icon" alt="*">
 							', $txt['shd_admin_cannedreplies_home'], '
@@ -49,7 +49,7 @@ function template_shd_cannedreplies_home()
 			echo '
 				<div class="tborder">
 					<br />
-					<div class="cat_bar grid_header">
+					<div class="cat_bar">
 						<h3 class="catbg">
 							', $cat['name'], '
 							', !empty($cat['move_up']) ? ('<a href="' . $scripturl . '?action=admin;area=helpdesk_cannedreplies;sa=movecat;cat=' . $cat_id . ';direction=up;' . $context['session_var'] . '=' . $context['session_id'] . '"><img src="' . $settings['default_images_url'] . '/simpledesk/move_up.png" alt="' . $txt['shd_admin_move_up'] . '" title="' . $txt['shd_admin_move_up'] . '" /></a>') : '', '
@@ -130,7 +130,7 @@ function template_shd_edit_canned_category()
 						', $txt['shd_admin_cannedreplies_homedesc'], '
 					</p>
 				</div>
-				<div class="cat_bar grid_header">
+				<div class="cat_bar">
 					<h3 class="catbg">
 						<img src="', $settings['default_images_url'], '/simpledesk/additional_information.png" alt="*" />
 						', $context['page_title'], '
@@ -155,8 +155,7 @@ function template_shd_edit_canned_category()
 						<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />
 						<input type="hidden" name="seqnum" value="', $context['form_sequence_number'], '" />
 					</form>
-				</div>
-				<span class="lowerframe"><span></span></span>';
+				</div>';
 }
 
 function template_shd_edit_canned_reply()
@@ -178,7 +177,7 @@ function template_shd_edit_canned_reply()
 					</p>
 				</div>
 				<form action="', $scripturl, '?action=admin;area=helpdesk_cannedreplies;sa=savereply" method="post" accept-charset="', $context['character_set'], '" name="cannedreply" id="cannedreply" onsubmit="', 'submitonce(this);smc_saveEntities(\'cannedreply\', [\'title\', \'', $context['post_box_name'], '\']);" enctype="multipart/form-data" style="margin: 0;">
-					<div class="cat_bar grid_header">
+					<div class="cat_bar">
 						<h3 class="catbg">
 							<img src="', $settings['default_images_url'], '/simpledesk/additional_information.png" alt="*" />
 							', $context['page_title'], '
@@ -206,9 +205,7 @@ function template_shd_edit_canned_reply()
 							</dl>
 						</div>
 					</div>
-					<span class="lowerframe"><span></span></span>
-					<br />
-					<div class="cat_bar grid_header">
+					<div class="cat_bar">
 						<h3 class="catbg">
 							<img src="', $settings['default_images_url'], '/simpledesk/departments.png" alt="*" />
 							', $txt['shd_admin_cannedreplies_departments'], '
@@ -229,8 +226,6 @@ function template_shd_edit_canned_reply()
 							</dl>
 						</div>
 					</div>
-					<span class="lowerframe"><span></span></span>
-					<br />
 					<input type="submit" value="', isset($editor_context['labels']['post_button']) ? $editor_context['labels']['post_button'] : $txt['save'], '" tabindex="', $context['tabindex']++, '" accesskey="s" class="button_submit" />';
 
 	if ($context['canned_reply']['id'] != 'new')
@@ -262,7 +257,7 @@ function template_shd_move_reply_cat()
 						', $txt['shd_admin_cannedreplies_homedesc'], '
 					</p>
 				</div>
-				<div class="cat_bar grid_header">
+				<div class="cat_bar">
 					<h3 class="catbg">
 						<img src="', $settings['default_images_url'], '/simpledesk/movedept.png" alt="*" />
 						', $context['page_title'], '
@@ -294,7 +289,6 @@ function template_shd_move_reply_cat()
 						<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '" />
 						<input type="hidden" name="seqnum" value="', $context['form_sequence_number'], '" />
 					</form>
-				</div>
-				<span class="lowerframe"><span></span></span>';
+				</div>';
 }
 

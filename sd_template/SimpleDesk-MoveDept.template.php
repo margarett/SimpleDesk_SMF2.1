@@ -30,7 +30,7 @@ function template_movedept()
 		</div><br class="clear" /><br />';
 
 	echo '
-	<div class="cat_bar grid_header">
+	<div class="cat_bar">
 		<h3 class="catbg">
 			<img src="', $settings['default_images_url'], '/simpledesk/movedept.png" alt="*" />
 			', $txt['shd_ticket_move_dept'], '
@@ -90,7 +90,6 @@ function template_movedept()
 				<input type="submit" value="', $txt['shd_ticket_move'], '" onclick="return submitThisOnce(this);" accesskey="s" class="button_submit" />
 			</div>
 		</form>
-	</div>
-	<span class="lowerframe"><span></span></span>';
+	</div>';
 }
 

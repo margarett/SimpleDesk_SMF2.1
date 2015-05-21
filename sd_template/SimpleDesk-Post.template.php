@@ -483,7 +483,7 @@ function template_ticket_shd_replyarea()
 	echo '
 			<div class="tborder">
 				<div class="title_bar">
-					<h3 class="titlebg grid_header">
+					<h3 class="titlebg">
 						<img src="', $settings['default_images_url'], '/simpledesk/respond.png" alt="x" />
 						', !empty($context['ticket_form']['form_title']) ? $context['ticket_form']['form_title'] : $txt['shd_reply_ticket'], '
 					</h3>
@@ -593,7 +593,6 @@ function template_ticket_footer()
 					</div>
 				</div>
 				<br class="clear" />
-				<span class="botslice"><span></span></span>
 			</div>
 			<br />';
 }
@@ -606,7 +605,7 @@ function template_preview()
 	{
 		echo '
 			<div class="tborder">
-			<div class="title_bar grid_header">
+			<div class="title_bar">
 				<h3 class="titlebg">
 					<img src="', $settings['default_images_url'], '/simpledesk/preview.png" alt="x" />
 					', !empty($context['ticket_form']['preview']['title']) ? $context['ticket_form']['preview']['title'] : $txt['preview'], '
@@ -795,7 +794,7 @@ function template_ticket_do_replies()
 
 	echo '
 		<div class="tborder">
-		<div class="title_bar grid_header">
+		<div class="title_bar">
 			<h3 class="titlebg">
 				<img src="', $settings['default_images_url'], '/simpledesk/replies.png" alt="x" /> ', $txt['shd_ticket_replies'], '
 			</h3>
@@ -918,9 +917,7 @@ function template_shd_thank_posting()
 			</h3>
 		</div>
 		<div class="windowbg">
-			<span class="topslice"><span></span></span>
 			<div class="padding">', $context['page_body'], '</div>
-			<span class="botslice"><span></span></span>
 		</div>
 	</div>
 	<br class="clear" />';

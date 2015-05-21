@@ -19,7 +19,7 @@ function template_shd_profile_main()
 
 	echo '
 	<div class="tborder shd_profile_navigation">
-		<div class="cat_bar grid_header">
+		<div class="cat_bar">
 			<h3 class="catbg">
 				<img src="', $settings['default_images_url'], '/simpledesk/user.png" alt="" class="shd_icon_minihead" />
 				', sprintf($txt['shd_profile_heading'], $context['member']['name']), '
@@ -56,7 +56,6 @@ function template_shd_profile_main()
 	echo '
 				<br /><br /><br />
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>
 	</div>';
 
@@ -66,7 +65,7 @@ function template_shd_profile_main()
 		echo '
 	<br />
 	<div class="tborder shd_profile_navigation" id="tracking">
-		<div class="cat_bar grid_header">
+		<div class="cat_bar">
 			<h3 class="catbg">
 				<img src="', $settings['default_images_url'], '/simpledesk/user.png" alt="" class="shd_icon_minihead" />
 				', $txt['summary'], ' - ', $context['member']['name'], '
@@ -160,7 +159,6 @@ function template_shd_profile_main()
 		echo '
 				<br />
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>
 	</div>';
 	}
@@ -193,7 +191,7 @@ function template_shd_profile_preferences()
 					var collapsed = (document.getElementById("prefheader_" + block).getAttribute("class") == "cat_bar");
 					if (collapsed)
 					{
-						document.getElementById("prefheader_" + block).setAttribute("class", "cat_bar grid_header");
+						document.getElementById("prefheader_" + block).setAttribute("class", "cat_bar");
 						document.getElementById("prefgroup_" + block).style.display = "";
 						document.getElementById("preffooter_" + block).style.display = "";
 						document.getElementById("prefexpandicon_" + block).src = ', JavaScriptEscape($settings['images_url'] . '/collapse.png'), ';
@@ -226,7 +224,7 @@ function template_shd_profile_preferences()
 		echo '
 						<br />
 						<div class="tborder">
-							<div class="cat_bar grid_header" id="prefheader_', $group, '">
+							<div class="cat_bar" id="prefheader_', $group, '">
 								<h3 class="catbg">
 									<span class="floatright">
 										<a class="permcollapse" href="#" onclick="shd_toggleblock(\'', $group, '\'); return false;">
@@ -332,7 +330,7 @@ function template_shd_profile_preferences()
 		echo '
 						<br />
 						<div class="tborder">
-							<div class="cat_bar grid_header">
+							<div class="cat_bar">
 								<h3 class="catbg">
 									', $txt['shd_profile_preferences_none_header'], '
 								</h3>
@@ -342,7 +340,6 @@ function template_shd_profile_preferences()
 								', $txt['shd_profile_preferences_none_desc'], '
 								</div>
 							</div>
-							<span class="lowerframe"><span></span></span>
 						</div>';
 
 	echo '
@@ -386,7 +383,6 @@ function template_shd_profile_show_tickets()
 		echo '
 		<div class="topic">
 			<div class="', $item['alternate'] == 0 ? 'windowbg2' : 'windowbg', ' core_posts">
-				<span class="topslice"><span></span></span>
 				<div class="content">
 					<div class="counter">', $item['counter'], '</div>
 					<div class="topic_details">
@@ -401,7 +397,6 @@ function template_shd_profile_show_tickets()
 					</div>
 				</div>
 				<br class="clear" />
-				<span class="botslice"><span></span></span>
 			</div>
 		</div>';
 	}
@@ -524,9 +519,7 @@ function template_shd_profile_permissions()
 						</select>
 						<input type="submit" class="button_submit" value="', $txt['go'], '" />
 					</form>
-				</div>
-				<span class="lowerframe"><span></span></span>
-				<br />';
+				</div>';
 	// We're done?
 	if (!empty($context['dept_list_only']))
 		return;
@@ -534,7 +527,7 @@ function template_shd_profile_permissions()
 	// Now, display the roles that are attached to this user, and display the groups that make that link.
 	echo '
 				<div class="tborder">
-					<div class="cat_bar grid_header">
+					<div class="cat_bar">
 						<h3 class="catbg sd_no_margin">
 							<img src="', $settings['default_images_url'], '/simpledesk/roles.png" alt="*" />
 							', $txt['shd_roles'], '
@@ -591,7 +584,7 @@ function template_shd_profile_permissions()
 		echo '
 				<br />
 				<div class="tborder">
-					<div class="cat_bar grid_header">
+					<div class="cat_bar">
 						<h3 class="catbg sd_no_margin">
 							<img src="', $settings['default_images_url'], '/simpledesk/perm_yes.png" alt="*" />
 							', $txt['shd_profile_granted'], '
@@ -703,7 +696,7 @@ function template_shd_profile_actionlog()
 
 	echo '
 				<div class="tborder">
-					<div class="cat_bar grid_header">
+					<div class="cat_bar">
 						<h3 class="catbg" id="ticket_log_header">
 							<img src="', $settings['default_images_url'], '/simpledesk/log.png" class="icon" alt="*" />
 							', sprintf($txt['shd_profile_log'], $context['member']['name']), '
@@ -779,7 +772,6 @@ function template_shd_profile_navigation_above()
 					</ul>
 					', !empty($options['use_sidebar_menu']) ? '<br class="clear" />' : '', '
 				</div>
-				<span class="lowerframe"><span></span></span>
 			</div>
 		</div>
 		', !empty($options['use_sidebar_menu']) ? '<br />' : '', '

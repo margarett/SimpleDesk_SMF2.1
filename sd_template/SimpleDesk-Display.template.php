@@ -36,7 +36,7 @@ function template_viewticket()
 	}
 
 	echo '
-			<div class="cat_bar grid_header">
+			<div class="cat_bar">
 				<h3 class="catbg ticketheader">
 					<span class="floatright smalltext shd_ticketlinks" id="ticket">';
 
@@ -434,7 +434,7 @@ function template_viewticketattach()
 	if (!empty($context['ticket_attach']['ticket']))
 	{
 		echo '	<div class="tborder">
-					<div class="title_bar grid_header">
+					<div class="title_bar">
 						<h3 class="titlebg">
 							<img src="', $settings['default_images_url'], '/simpledesk/attachments.png" alt="" />', $txt['shd_ticket_attachments'], ' (', count($context['ticket_attach']['ticket']), ')
 						</h3>
@@ -473,7 +473,6 @@ function template_viewticketattach()
 
 		echo '
 						</div>
-						<span class="botslice"><span></span></span>
 					</div>
 				</div>';
 	}
@@ -615,7 +614,7 @@ function template_additional_fields()
 			return;
 
 		echo '
-				<div class="title_bar grid_header" id="additionalinfoheader">
+				<div class="title_bar" id="additionalinfoheader">
 					<h3 class="titlebg">
 						<span class="floatright"><a href="javascript:oCustomFields.infoswap();"><img src="', $settings['images_url'], '/collapse.png" alt="+" id="shd_custom_fields_swap" class="icon" /></a></span>
 						<img src="', $settings['default_images_url'], '/simpledesk/additional_information.png" alt="x" />
@@ -684,7 +683,7 @@ function template_quickreply()
 	if ($context['can_reply'] && !empty($options['display_quick_reply']))
 	{
 		echo '
-			<div class="title_bar', $options['display_quick_reply'] == 2 ? ' grid_header' : '', '" id="quickreplyheader">
+			<div class="title_bar" id="quickreplyheader">
 				<h3 class="titlebg">
 					<span class="floatright"><a href="#" onclick="oQuickReply.swap(); return false;"><img src="', $settings['images_url'], '/', $options['display_quick_reply'] == 2 ? 'collapse' : 'expand', '.png" alt="+" id="quickReplyExpand" class="icon" style="display:none;" /></a></span>
 					<img src="', $settings['default_images_url'], '/simpledesk/respond.png" alt="x" />
