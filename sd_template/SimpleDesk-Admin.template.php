@@ -72,12 +72,12 @@ function template_shd_admin()
 						', sprintf($txt['shd_support_start_here'], $scripturl . '?action=admin;area=helpdesk_info;sa=support'), '<br />
 						<img src="', $settings['default_images_url'], '/simpledesk/versions.png" alt="*" class="shd_icon_minihead" /> <strong>', $txt['support_versions'], ':</strong><br />
 						', $txt['shd_your_version'], ':
-						<em id="yourVersion" class="shd_nowrap">', SHD_VERSION, '</em><br />
+						<em id="yourVersion">', SHD_VERSION, '</em><br />
 						', $txt['shd_current_version'], ':
-						<em id="sdVersion" class="shd_nowrap">??</em><br /><br />
+						<em id="sdVersion">??</em><br /><br />
 						<img src="', $settings['default_images_url'], '/simpledesk/ticket.png" alt="*" class="shd_icon_minihead" /> <strong>', $txt['shd_ticket_information'], ':</strong><br />
 						', $txt['shd_total_tickets'], ':
-						<em id="totalTickets" class="shd_nowrap">
+						<em id="totalTickets">
 							<a href="javascript: shd_ticket_total_information();" >', $context['total_tickets'], '</a>
 						</em>
 						<div id="shd_ticket_total_information" style="display: none;">
@@ -632,7 +632,7 @@ function template_shd_action_log()
 				{
 					echo '
 						<tr class="windowbg">
-							<td width="1%" class="shd_nowrap">
+							<td width="1%">
 								<img src="', shd_image_url($action['action_icon']), '" alt="" class="shd_smallicon" />
 							</td>
 							<td class="smalltext">', $action['action_text'], '</td>

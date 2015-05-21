@@ -25,20 +25,20 @@ function template_shd_departments_home()
 							', $txt['shd_admin_departments_home'], '
 						</h3>
 					</div>
-					<p class="information shd_actionloginfo">
+					<p class="information">
 						', $txt['shd_admin_departments_homedesc'], '
 					</p>
-					<table class="shd_ticketlist" cellspacing="0" width="100%">
-						<tr class="titlebg">
+					<table class="table_grid">
+						<tr class="title_bar">
 							<td width="1%"></td>
-							<td width="25%" class="shd_nowrap">
+							<td width="25%">
 								', $txt['shd_department_name'], '
 							</td>
 							<td>', $txt['shd_dept_boardindex'], '</td>
-							<td width="40%" class="shd_nowrap">
+							<td width="40%">
 								', $txt['shd_roles_in_dept'], '
 							</td>
-							<td colspan="3" width="1%" class="shd_nowrap">', $txt['shd_actions'], '</td>
+							<td colspan="3" width="1%">', $txt['shd_actions'], '</td>
 						</tr>';
 
 	foreach ($context['shd_departments'] as $department)
@@ -75,7 +75,7 @@ function template_shd_departments_home()
 					$first = false;
 
 				echo '
-								<span class="shd_nowrap"><img src="', $settings['default_images_url'], '/simpledesk/', $context['shd_permissions']['roles'][$role['template']]['icon'], '" class="icon" alt="*">
+								<span><img src="', $settings['default_images_url'], '/simpledesk/', $context['shd_permissions']['roles'][$role['template']]['icon'], '" class="icon" alt="*">
 								<a href="', $scripturl, '?action=admin;area=helpdesk_permissions;sa=editrole;role=', $role['id_role'], '">', $role['role_name'], '</a></span>';
 			}
 		}
@@ -247,11 +247,11 @@ function template_shd_edit_dept()
 								', $txt['shd_roles_in_dept'], '
 							</h3>
 						</div>
-						<p class="information shd_actionloginfo">
+						<p class="information">
 							', $txt['shd_roles_in_dept_desc'], '
 						</p>
-						<table class="shd_ticketlist" cellspacing="0" width="100%">
-							<tr class="titlebg">
+						<table class="table_grid">
+							<tr class="title_bar">
 								<td width="50%">', $txt['shd_role'], '</td>
 								<td>', $txt['shd_assign_dept'], '</td>
 							</tr>';

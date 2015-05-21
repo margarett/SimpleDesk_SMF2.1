@@ -36,11 +36,11 @@ function template_shd_permissions_home()
 							', $txt['shd_role_templates'], '
 						</h3>
 					</div>
-					<p class="information shd_actionloginfo">
+					<p class="information">
 						', $txt['shd_role_templates_desc'], '
 					</p>
-					<table class="shd_ticketlist" cellspacing="0" width="100%">
-						<tr class="titlebg">
+					<table class="table_grid">
+						<tr class="title_bar">
 							<td colspan="2" width="30%">', $txt['shd_role'], '</td>
 							<td colspan="', count($context['shd_permissions']['group_display']), '">', $txt['shd_permissions'], '</td>
 						</tr>';
@@ -69,11 +69,11 @@ function template_shd_permissions_home()
 							', $txt['shd_roles'], '
 						</h3>
 					</div>
-					<p class="information shd_actionloginfo">
+					<p class="information">
 						', $txt['shd_roles_desc'], '
 					</p>
-					<table class="shd_ticketlist" cellspacing="0" width="100%">
-						<tr class="titlebg">
+					<table class="table_grid">
+						<tr class="title_bar">
 							<td colspan="2" width="20%">', $txt['shd_role'], '</td>
 							<td colspan="', count($context['shd_permissions']['group_display']), '">', $txt['shd_permissions'], '</td>
 							<td width="15%">', $txt['shd_membergroups'], '</td>
@@ -389,7 +389,7 @@ function template_shd_edit_role()
 
 				echo '
 									<dt', (empty($txt['permissionhelp_' . $permission]) ? '' : ' title="' . $txt['permissionhelp_' . $permission] . '"') . '><img src="', shd_image_url($icon), '" alt="*" />', $txt['permissionname_' . $permission], '</dt>
-									<dd class="shd_nowrap">
+									<dd>
 										<span id="perm_', $permission, '_icon" class="', $perm_class, '"></span>
 										<select name="perm_', $permission, '" id="perm_', $permission, '" onchange="javascript:shd_chicon(this);">
 											<option value="disallow"', ($perm_value == 'disallow' ? ' selected="selected"' : ''), '>', (empty($txt['permissionname_' . $permission . '_no']) ? $txt['shd_roleperm_disallow'] : $txt['permissionname_' . $permission . '_no']), '&nbsp;</option>';
@@ -448,11 +448,11 @@ function template_shd_edit_role()
 								', $txt['shd_role_membergroups'], '
 							</h3>
 						</div>
-						<p class="information shd_actionloginfo">
+						<p class="information">
 							', $txt['shd_role_membergroups_desc'], '
 						</p>
-						<table class="shd_ticketlist" cellspacing="0" width="100%">
-							<tr class="titlebg">
+						<table class="table_grid">
+							<tr class="title_bar">
 								<td width="30%">', $txt['shd_role'], '</td>
 								<td width="30%">', $txt['shd_badge_stars'], '</td>
 								<td>', $txt['shd_assign_group'], '</td>
@@ -489,11 +489,11 @@ function template_shd_edit_role()
 								', $txt['shd_role_departments'], '
 							</h3>
 						</div>
-						<p class="information shd_actionloginfo">
+						<p class="information">
 							', $txt['shd_role_departments_desc'], '
 						</p>
-						<table class="shd_ticketlist" cellspacing="0" width="100%">
-							<tr class="titlebg">
+						<table class="table_grid">
+							<tr class="title_bar">
 								<td width="50%">', $txt['shd_department_name'], '</td>
 								<td width="50%">', $txt['shd_assign_dept'], '</td>
 							</tr>';

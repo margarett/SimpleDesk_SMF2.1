@@ -20,11 +20,11 @@ function template_shd_custom_field_home()
 							', $txt['shd_admin_custom_fields_long'], '
 						</h3>
 					</div>
-					<p class="information shd_actionloginfo">
+					<p class="information">
 						', $txt['shd_admin_custom_fields_desc'], '
 					</p>
-					<table class="shd_ticketlist" cellspacing="0" width="100%">
-						<tr class="titlebg">
+					<table class="table_grid">
+						<tr class="title_bar">
 							<td width="30%" colspan="2">
 								<img src="', $settings['default_images_url'], '/simpledesk/name.png" class="icon" alt="*" />
 								', $txt['shd_admin_custom_fields_fieldname'], '
@@ -36,8 +36,8 @@ function template_shd_custom_field_home()
 							<td>', $txt['shd_admin_custom_fields_active'], '</td>
 							<td>', $txt['shd_admin_custom_fields_visible'], '</td>
 							<td>', $txt['shd_admin_custom_field_permissions'], '</td>
-							<td colspan="2" width="1%" class="shd_nowrap">', $txt['shd_admin_custom_fields_move'], '</td>
-							<td class="shd_nowrap">', $txt['shd_actions'], '</td>
+							<td colspan="2" width="1%">', $txt['shd_admin_custom_fields_move'], '</td>
+							<td>', $txt['shd_actions'], '</td>
 						</tr>';
 
 	if (empty($context['custom_fields']))
@@ -56,7 +56,7 @@ function template_shd_custom_field_home()
 							<td width="2%"><img src="' . $settings['default_images_url'] . '/simpledesk/cf_ui_' . $field['field_type'] . '.png" class="icon" alt="', $txt['shd_admin_custom_fields_ui_' . $field['field_type']], '" /></td>
 							<td>', $txt['shd_admin_custom_fields_ui_' . $field['field_type']], '</td>
 							<td><img src="', $settings['default_images_url'], '/simpledesk/cf_', $field['active_string'], '.png" alt="', $txt['shd_admin_custom_fields_' . $field['active_string']], '" title="', $txt['shd_admin_custom_fields_' . $field['active_string']], '" /></td>
-							<td class="shd_nowrap">
+							<td>
 								', ($field['field_loc'] & CFIELD_TICKET) !== 0 ? ('<img src="' . $settings['default_images_url'] . '/simpledesk/ticket.png" alt="' . $txt['shd_admin_custom_fields_inticket'] . '" title="' . $txt['shd_admin_custom_fields_inticket'] . '" />') : '', '
 								', ($field['field_loc'] & CFIELD_REPLY) !== 0 ? ('<img src="' . $settings['default_images_url'] . '/simpledesk/replies.png" alt="' . $txt['shd_admin_custom_fields_inreply'] . '" title="' . $txt['shd_admin_custom_fields_inreply'] . '" />') : '', '
 							</td>
@@ -294,7 +294,7 @@ function template_shd_custom_field_edit()
 						<div class="content">
 							<dl class="settings">
 								<dt><strong>', $txt['shd_admin_custom_fields_fieldtype'], ':</strong></dt>
-								<dd class="shd_nowrap">
+								<dd>
 									<span id="cf_fieldtype_icon" class="cf_ui_', $context['field_types'][$context['field_type_value']][1], '"></span>
 									<select name="field_type" id="cf_fieldtype" onchange="javascript:update_field_type(this.value);">';
 

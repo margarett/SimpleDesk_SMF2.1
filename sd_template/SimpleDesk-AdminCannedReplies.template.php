@@ -57,14 +57,14 @@ function template_shd_cannedreplies_home()
 							<a href="', $scripturl, '?action=admin;area=helpdesk_cannedreplies;sa=editcat;cat=' . $cat_id . ';', $context['session_var'], '=', $context['session_id'], '"><img src="', $settings['default_images_url'], '/simpledesk/edit.png" class="icon" alt="', $txt['shd_ticket_edit'],'" title="', $txt['shd_ticket_edit'], '" /></a>
 						</h3>
 					</div>
-					<table class="shd_ticketlist" cellspacing="0" width="100%">
-						<tr class="titlebg">
-							<td width="30%" class="shd_nowrap">', $txt['shd_admin_cannedreplies_replyname'], '</td>
+					<table class="table_grid">
+						<tr class="title_bar">
+							<td width="30%">', $txt['shd_admin_cannedreplies_replyname'], '</td>
 							<td width="25%">', $txt['shd_departments'], '</td>
 							<td>', $txt['shd_admin_cannedreplies_isactive'], '</td>
 							<td>', $txt['shd_admin_cannedreplies_visibleto'], '</td>
-							<td colspan="3" width="1%" class="shd_nowrap">', $txt['shd_admin_custom_fields_move'], '</td>
-							<td colspan="2" width="1%" class="shd_nowrap">', $txt['shd_actions'], '</td>
+							<td colspan="3" width="1%">', $txt['shd_admin_custom_fields_move'], '</td>
+							<td colspan="2" width="1%">', $txt['shd_actions'], '</td>
 						</tr>';
 
 			if (empty($cat['replies']))

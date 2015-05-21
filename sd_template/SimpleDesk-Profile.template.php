@@ -432,15 +432,15 @@ function template_shd_profile_show_notify_override()
 				<div class="shd_profile_show_tickets_nav">', template_button_strip($context['show_tickets_navigation']), '<br class="clear" /></div>';
 
 	echo '
-				<table class="shd_ticketlist" cellspacing="0" width="100%">
-					<tr class="titlebg">
-						<td width="8%" class="shd_nowrap"><img src="', $settings['default_images_url'], '/simpledesk/ticket.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket'], '</td>
-						<td width="15%" class="shd_nowrap">', $txt['shd_ticket_name'], '</td>
-						<td width="12%" class="shd_nowrap"><img src="', $settings['default_images_url'], '/simpledesk/user.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_started_by'], '</td>
-						<td width="7%" class="shd_nowrap">', $txt['shd_ticket_replies'], '</td>
-						<td width="17%" class="shd_nowrap"><img src="', $settings['default_images_url'], '/simpledesk/status.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_status'], '</td>
-						<td width="8%" class="shd_nowrap"><img src="', $settings['default_images_url'], '/simpledesk/urgency.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_urgency'], '</td>
-						<td width="22%" class="shd_nowrap"><img src="', $settings['default_images_url'], '/simpledesk/time.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_updated'], '</td>
+				<table class="table_grid">
+					<tr class="title_bar">
+						<td width="8%"><img src="', $settings['default_images_url'], '/simpledesk/ticket.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket'], '</td>
+						<td width="15%">', $txt['shd_ticket_name'], '</td>
+						<td width="12%"><img src="', $settings['default_images_url'], '/simpledesk/user.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_started_by'], '</td>
+						<td width="7%">', $txt['shd_ticket_replies'], '</td>
+						<td width="17%"><img src="', $settings['default_images_url'], '/simpledesk/status.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_status'], '</td>
+						<td width="8%"><img src="', $settings['default_images_url'], '/simpledesk/urgency.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_urgency'], '</td>
+						<td width="22%"><img src="', $settings['default_images_url'], '/simpledesk/time.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_updated'], '</td>
 					</tr>';
 
 	if (empty($context['tickets']))
@@ -533,11 +533,11 @@ function template_shd_profile_permissions()
 							', $txt['shd_roles'], '
 						</h3>
 					</div>
-					<p class="information shd_actionloginfo">
+					<p class="information">
 						', $txt['shd_profile_roles_assigned'], '
 					</p>
-					<table class="shd_ticketlist" cellspacing="0" width="100%">
-						<tr class="titlebg">
+					<table class="table_grid">
+						<tr class="title_bar">
 							<td colspan="2" width="30%">', $txt['shd_role'], '</td>
 							<td>', $txt['shd_profile_role_membergroups'], '</td>
 						</tr>';
@@ -590,11 +590,11 @@ function template_shd_profile_permissions()
 							', $txt['shd_profile_granted'], '
 						</h3>
 					</div>
-					<p class="information shd_actionloginfo">
+					<p class="information">
 						', $txt['shd_profile_granted_desc'], '
 					</p>
-					<table class="shd_ticketlist" cellspacing="0" width="100%">
-						<tr class="titlebg">
+					<table class="table_grid">
+						<tr class="title_bar">
 							<td colspan="2" width="60%">', $txt['shd_permissions'], '</td>
 							<td>', $txt['shd_roles'], '</td>
 						</tr>';
@@ -673,7 +673,7 @@ function template_shd_profile_permissions()
 				if ($done_first)
 					echo ', ';
 
-				echo '<span class="shd_nowrap"><img src="', $settings['default_images_url'], '/simpledesk/', $context['shd_permissions']['roles'][$context['member_roles'][$role]['template']]['icon'], '" alt="" />&nbsp;', $context['member_roles'][$role]['name'], '</span>';
+				echo '<span><img src="', $settings['default_images_url'], '/simpledesk/', $context['shd_permissions']['roles'][$context['member_roles'][$role]['template']]['icon'], '" alt="" />&nbsp;', $context['member_roles'][$role]['name'], '</span>';
 				$done_first = true;
 			}
 
@@ -703,8 +703,8 @@ function template_shd_profile_actionlog()
 							<span class="smalltext">(', $context['action_log_count'] == 1 ? $txt['shd_profile_log_count_one'] : sprintf($txt['shd_profile_log_count_more'], $context['action_log_count']) , ')</span>
 						</h3>
 					</div>
-					<table class="shd_ticketlist" id="ticket_log" cellspacing="0" width="100%">
-						<tr class="titlebg">
+					<table class="table_grid" id="ticket_log">
+						<tr class="title_bar">
 							<td width="15%">
 								<img src="', $settings['default_images_url'], '/simpledesk/time.png" class="shd_smallicon" alt="" />
 								', $txt['shd_ticket_log_date'], '
