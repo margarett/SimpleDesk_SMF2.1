@@ -40,7 +40,6 @@ function template_shd_admin()
 	// Display the "live news" from simpledesk.net
 	echo '
 			<div id="live_news" class="floatleft">
-				<div class="tborder">
 				<div class="cat_bar">
 					<h3 class="catbg">
 						<img src="', $settings['default_images_url'], '/simpledesk/live.png" alt="*" />
@@ -49,10 +48,9 @@ function template_shd_admin()
 					</h3>
 				</div>
 				<div class="windowbg nopadding">
-						<div class="content">
-							<div id="sdAnnouncements">', $txt['shd_no_connect'], '</div>
-						</div>
-				</div>
+					<div class="content">
+						<div id="sdAnnouncements">', $txt['shd_no_connect'], '</div>
+					</div>
 				</div>
 			</div>';
 
@@ -102,7 +100,6 @@ function template_shd_admin()
 
 	echo '
 		<div id="sd_credits">
-			<div class="tborder">
 			<div class="title_bar">
 				<h3 class="titlebg sd_no_margin">
 					<img src="', $settings['default_images_url'], '/simpledesk/credits.png" alt="*" />
@@ -122,7 +119,7 @@ function template_shd_admin()
 				foreach ($section['groups'] as $group)
 				{
 					echo '
-						<div class="information">';
+						<div class="padding">';
 
 					// Pretty icons! :D
 					if (isset($group['icon']))
@@ -165,7 +162,6 @@ function template_shd_admin()
 					echo '
 						<span class="smalltext">&nbsp;<img src="', $settings['default_images_url'], '/simpledesk/update.png" alt="*" class="shd_tinyicon" /> ', $txt['shd_former_contributors'], '</span>
 					</div>
-				</div>
 				</div>
 			</div>';
 		}

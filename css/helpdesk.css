@@ -18,11 +18,6 @@
 	position: relative;
 	top: 3px;
 }
-.shd_icon_fullhead
-{
-	position: relative;
-	top: 9px;
-}
 .shd_tinyicon
 {
 	width: 9px;
@@ -532,4 +527,20 @@ h3.ticketheader img
 }
 .generic_icons.urgency_decrease {
 	background-position: -213px -5px;
+}
+
+/* We need some adjustments */
+dl.stats dd span, dl.stats dt span {
+	position: relative;
+}
+
+/* We need something like winfo in helpdesk */
+.noup {
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	margin: 0 !important;
+}
+
+.shd_icon_fullhead {
+	position: relative;
 }

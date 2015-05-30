@@ -18,7 +18,6 @@ function template_shd_profile_main()
 	global $context, $txt, $settings, $scripturl, $modSettings;
 
 	echo '
-	<div class="tborder shd_profile_navigation">
 		<div class="cat_bar">
 			<h3 class="catbg">
 				<img src="', $settings['default_images_url'], '/simpledesk/user.png" alt="" class="shd_icon_minihead" />
@@ -35,29 +34,21 @@ function template_shd_profile_main()
 	echo '
 				<br />
 				', $txt['shd_profile_tickets_assigned'], ': <a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=hd_showtickets">', $context['shd_numassigned'], '</a>
-				<br /><br />
-
-				<div class="information shd_showtickets floatright" id="shd_showtickets">
-					<a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=hd_showtickets">', $txt['shd_profile_view_tickets'], '</a><br />
-				</div>';
+				<div class="block floatright">
+					<a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=hd_showtickets" class="button"><span id="shd_showtickets"></span>', $txt['shd_profile_view_tickets'], '</a>';
 
 	if (!empty($context['can_post_proxy']))
 		echo '
-				<div class="information shd_showtickets floatright" id="shd_post_proxy">
-					<a href="', $scripturl, '?action=helpdesk;sa=newticket;proxy=', $context['member']['id'], '">', $txt['shd_profile_proxy'], '</a><br />
-				</div>';
+					<a href="', $scripturl, '?action=helpdesk;sa=newticket;proxy=', $context['member']['id'], '"><span id="shd_post_proxy" class="button"></span>', $txt['shd_profile_proxy'], '</a>';
 
 	if (!empty($context['can_post_ticket']))
 		echo '
-				<div class="information shd_showtickets floatright" id="shd_post_ticket">
-					<a href="', $scripturl, '?action=helpdesk;sa=newticket">', $txt['shd_profile_newticket'], '</a><br />
-				</div>';
+					<a href="', $scripturl, '?action=helpdesk;sa=newticket" class="button"><span id="shd_post_ticket"></span>', $txt['shd_profile_newticket'], '</a>';
 
 	echo '
-				<br /><br /><br />
+				</div>
 			</div>
-		</div>
-	</div>';
+		</div>';
 
 	// In helpdesk-only mode, we don't have the forum profile, so we need to display what's useful and relevant on here.
 	if (!empty($modSettings['shd_helpdesk_only']))
@@ -362,7 +353,7 @@ function template_shd_profile_show_tickets()
 				</div>';
 
 	// The navigation.
-	echo '<div class="shd_profile_show_tickets_nav">', template_button_strip($context['show_tickets_navigation']), '<br class="clear" /></div>';
+	template_button_strip($context['show_tickets_navigation']);
 
 	// Pagination
 	echo '
@@ -391,8 +382,8 @@ function template_shd_profile_show_tickets()
 					</div>
 					<div class="list_posts">
 						', $item['body'], '
-						<div class="information shd_replybutton floatright" id="shd_replybutton">
-							<a href="', $scripturl, '?action=helpdesk;sa=ticket;ticket=', $item['ticket'], '.0">', $txt['shd_profile_view_full_ticket'], '</a><br />
+						<div class="block floatright">
+							<a href="', $scripturl, '?action=helpdesk;sa=ticket;ticket=', $item['ticket'], '.0" class="button">', $txt['shd_profile_view_full_ticket'], '</a>
 						</div>
 					</div>
 				</div>
@@ -428,8 +419,7 @@ function template_shd_profile_show_notify_override()
 				</div>';
 
 	// The navigation.
-	echo '
-				<div class="shd_profile_show_tickets_nav">', template_button_strip($context['show_tickets_navigation']), '<br class="clear" /></div>';
+	template_button_strip($context['show_tickets_navigation']);
 
 	echo '
 				<table class="table_grid">

@@ -27,33 +27,17 @@ function template_viewticket()
 	global $context, $txt, $scripturl, $settings, $modSettings, $options;
 
 	// Back to the helpdesk.
-	echo '<div class="floatleft">', template_button_strip(array($context['navigation']['back'], $context['navigation']['replies'], $context['navigation']['ticketlog']), 'bottom'), '</div>', ($modSettings['shd_ticketnav_style'] != 'smf' ? '<br class="clear" /><br />' : ''), '';
+	template_button_strip(array($context['navigation']['back'], $context['navigation']['replies'], $context['navigation']['ticketlog']));
 
 	if ($modSettings['shd_ticketnav_style'] == 'smf')
 	{
 		template_button_strip($context['ticket_navigation'], 'right');
-		echo '<br class="clear" />';
 	}
 
 	echo '
 			<div class="cat_bar">
-				<h3 class="catbg ticketheader">
+				<h3 class="catbg">
 					<span class="floatright smalltext shd_ticketlinks" id="ticket">';
-
-	if ($modSettings['shd_ticketnav_style'] == 'sd')
-	{
-		foreach ($context['ticket_navigation'] as $button)
-			if (!empty($button['display']))
-				echo '
-						<a href="', $button['url'], '"', (!empty($button['is_last']) ? ' id="last"' : ''), '', (!empty($button['onclick']) ? ' onclick="' . $button['onclick'] . '"' : ''), '><img src="', $settings['default_images_url'], '/simpledesk/', $button['icon'], '.png" alt="', $button['alt'], '" title="', $txt[$button['text']], '" /> ', $txt[$button['text']], '</a>';
-	}
-	elseif ($modSettings['shd_ticketnav_style'] == 'sdcompact')
-	{
-		foreach ($context['ticket_navigation'] as $button)
-			if (!empty($button['display']))
-				echo '
-						<a href="', $button['url'], '"', (!empty($button['is_last']) ? ' id="last"' : ''), '', (!empty($button['onclick']) ? ' onclick="' . $button['onclick'] . '"' : ''), '><img src="', $settings['default_images_url'], '/simpledesk/', $button['icon'], '.png" alt="', $button['alt'], '" title="', $txt[$button['text']], '" /></a>';
-	}
 
 	echo '
 					</span>
@@ -65,79 +49,43 @@ function template_viewticket()
 
 			// General ticket details
 			echo '
-					<div class="information shd_ticketdetails">
+					<div class="shd_ticketdetails">
 						<strong><img src="', $settings['default_images_url'], '/simpledesk/details.png" alt="" class="shd_smallicon shd_icon_minihead" /> ', $txt['shd_ticket_details'], '</strong>
 						<hr />
-						<ul>
-							<li id="item_id">
-								<dl>
-									<dt><span class="generic_icons inbox" alt="', $txt['shd_ticket_id'], '"></span> ', $txt['shd_ticket_id'], ':</dt>
-									<dd>', $context['ticket']['display_id'], '</dd>
-								</dl>
-							</li>
-							<li id="item_userstarted">
-								<dl>
-									<dt><span class="generic_icons members" alt="', $txt['shd_ticket_user'], '"></span> ', $txt['shd_ticket_user'], ':</dt>
-									<dd>', $context['ticket']['member']['link'], '</dd>
-								</dl>
-							</li>
-							<li id="item_whenstarted">
-								<dl>
-									<dt><span class="generic_icons calendar" alt="', $txt['shd_ticket_date'], '"></span> ', $txt['shd_ticket_date'], ':</dt>
-									<dd>', $context['ticket']['poster_time'], '</dd>
-								</dl>
-							</li>
-							<li id="item_urgency">
-								<dl>
-									<dt><img src="', $settings['default_images_url'], '/simpledesk/urgency.png" alt="" class="shd_smallicon" /> ', $txt['shd_ticket_urgency'], ':</dt>
-									<dd><span id="urgency">', $context['ticket']['urgency']['label'], '</span>
-										<span id="urgency_increase">', (!empty($context['ticket']['urgency']['increase']) ? '<a id="urglink_increase" href="' . $scripturl . '?action=helpdesk;sa=urgencychange;ticket=' . $context['ticket']['id'] . ';change=increase;' . $context['session_var'] . '=' . $context['session_id'] . '" title="' . $txt['shd_urgency_increase'] . '"><span class="generic_icons urgency_increase" title="' . $txt['shd_urgency_increase'] . '"></span></a>' : ''), '</span>
-										<span id="urgency_decrease">', (!empty($context['ticket']['urgency']['decrease']) ? '<a id="urglink_decrease" href="' . $scripturl . '?action=helpdesk;sa=urgencychange;ticket=' . $context['ticket']['id'] . ';change=decrease;' . $context['session_var'] . '=' . $context['session_id'] . '" title="' . $txt['shd_urgency_decrease'] . '"><span class="generic_icons urgency_decrease" title="' . $txt['shd_urgency_decrease'] . '"></span></a>' : ''), '</span>
-									</dd>
-								</dl>
-							</li>
-							<li id="item_assigned">
-								<dl>
-									<dt><img src="', $settings['default_images_url'], '/simpledesk/staff.png" alt="" class="shd_smallicon" /> ', $txt['shd_ticket_assignedto'], ':</dt>
-									<dd><span id="assigned_to">', $context['ticket']['assigned']['link'], '</span></dd>
-									<dd id="assigned_button"></dd>
-								</dl>
-								<ul id="assigned_list" style="display:none;">
-								</ul>
-							</li>
-							<li id="item_status">
-								<dl>
-									<dt><img src="', $settings['default_images_url'], '/simpledesk/status.png" alt="" class="shd_smallicon"/> ', $txt['shd_ticket_status'], ':</dt>
-									<dd>', $context['ticket']['status']['label'], '</dd>
-								</dl>
-							</li>
-							<li id="item_replies">
-								<dl>
-									<dt><img src="', $settings['default_images_url'], '/simpledesk/replies.png" alt="" class="shd_smallicon" /> ', $txt['shd_ticket_num_replies'], ':</dt>
-									<dd><a href="#replies">', (empty($context['ticket']['display_recycle']) ? $context['ticket']['num_replies'] : (int) $context['ticket']['num_replies'] + (int) $context['ticket']['deleted_replies']), '</a></dd>
-								</dl>
-							</li>';
+							<dl class="stats nobb">
+								<dt><span class="generic_icons inbox" alt="', $txt['shd_ticket_id'], '"></span> ', $txt['shd_ticket_id'], ':</dt>
+								<dd>', $context['ticket']['display_id'], '</dd>
+								<dt><span class="generic_icons members" alt="', $txt['shd_ticket_user'], '"></span> ', $txt['shd_ticket_user'], ':</dt>
+								<dd>', $context['ticket']['member']['link'], '</dd>
+								<dt><span class="generic_icons calendar" alt="', $txt['shd_ticket_date'], '"></span> ', $txt['shd_ticket_date'], ':</dt>
+								<dd>', $context['ticket']['poster_time'], '</dd>
+								<dt><img src="', $settings['default_images_url'], '/simpledesk/urgency.png" alt="" class="shd_smallicon" /> ', $txt['shd_ticket_urgency'], ':</dt>
+								<dd>', $context['ticket']['urgency']['label'], '
+									', (!empty($context['ticket']['urgency']['increase']) ? '<a id="urglink_increase" href="' . $scripturl . '?action=helpdesk;sa=urgencychange;ticket=' . $context['ticket']['id'] . ';change=increase;' . $context['session_var'] . '=' . $context['session_id'] . '" title="' . $txt['shd_urgency_increase'] . '"><span class="generic_icons urgency_increase" title="' . $txt['shd_urgency_increase'] . '"></span></a>' : ''), '
+									', (!empty($context['ticket']['urgency']['decrease']) ? '<a id="urglink_decrease" href="' . $scripturl . '?action=helpdesk;sa=urgencychange;ticket=' . $context['ticket']['id'] . ';change=decrease;' . $context['session_var'] . '=' . $context['session_id'] . '" title="' . $txt['shd_urgency_decrease'] . '"><span class="generic_icons urgency_decrease" title="' . $txt['shd_urgency_decrease'] . '"></span></a>' : ''), '
+								</dd>
+								<dt><img src="', $settings['default_images_url'], '/simpledesk/staff.png" alt="" class="shd_smallicon" /> ', $txt['shd_ticket_assignedto'], ':</dt>
+								<dd>', $context['ticket']['assigned']['link'], '<span id="assigned_button"></span></dd>
+								<dt class="full_width">
+									<ul id="assigned_list" style="display:none;"></ul>
+								</dt>
+								<dt><img src="', $settings['default_images_url'], '/simpledesk/status.png" alt="" class="shd_smallicon"/> ', $txt['shd_ticket_status'], ':</dt>
+								<dd>', $context['ticket']['status']['label'], '</dd>
+								<dt><img src="', $settings['default_images_url'], '/simpledesk/replies.png" alt="" class="shd_smallicon" /> ', $txt['shd_ticket_num_replies'], ':</dt>
+								<dd><a href="#replies">', (empty($context['ticket']['display_recycle']) ? $context['ticket']['num_replies'] : (int) $context['ticket']['num_replies'] + (int) $context['ticket']['deleted_replies']), '</a></dd>';
 
 				if (!empty($context['display_private']))
 					echo '
-							<li>
-								<dl>
-									<dt><img src="', $settings['default_images_url'], '/simpledesk/private.png" alt="" class="shd_smallicon" /> ', $txt['shd_ticket_privacy'], ':</dt>
-									<dd><span id="privacy">', $context['ticket']['privacy']['label'], '</span>', ($context['ticket']['privacy']['can_change'] ? ' (<a id="privlink" href="' . $scripturl . '?action=helpdesk;sa=privacychange;ticket=' . $context['ticket']['id'] . ';' . $context['session_var'] . '=' . $context['session_id'] . '">' . $txt['shd_ticket_change'] . '</a>)' : ''), '</dd>
-								</dl>
-							</li>';
+								<dt><img src="', $settings['default_images_url'], '/simpledesk/private.png" alt="" class="shd_smallicon" /> ', $txt['shd_ticket_privacy'], ':</dt>
+								<dd>', $context['ticket']['privacy']['label'], '', ($context['ticket']['privacy']['can_change'] ? ' (<a id="privlink" href="' . $scripturl . '?action=helpdesk;sa=privacychange;ticket=' . $context['ticket']['id'] . ';' . $context['session_var'] . '=' . $context['session_id'] . '">' . $txt['shd_ticket_change'] . '</a>)' : ''), '</dd>';
 
 				if (!empty($context['ticket']['ip_address']))
 					echo '
-							<li>
-								<dl>
-									<dt><img src="', $settings['default_images_url'], '/simpledesk/ip.png" alt="" class="shd_smallicon" /> ', $txt['shd_ticket_ip'], ':</dt>
-									<dd>', $context['ticket']['ip_address'], '</dd>
-								</dl>
-							</li>';
+								<dt><img src="', $settings['default_images_url'], '/simpledesk/ip.png" alt="" class="shd_smallicon" /> ', $txt['shd_ticket_ip'], ':</dt>
+								<dd>', $context['ticket']['ip_address'], '</dd>';
 
 				echo '
-						</ul>';
+							</dl>';
 
 			// Display ticket custom fields/filters, if any
 			if (!empty($context['ticket']['custom_fields']['prefixfilter']))
@@ -320,16 +268,37 @@ function template_viewticket()
 
 			if ($context['can_reply'])
 				echo '
-						<br />
-						<div class="information shd_replybutton floatright" id="shd_replybutton">
-							<a href="', $scripturl, '?action=helpdesk;sa=reply;ticket=', $context['ticket_id'], ';num_replies=', $context['ticket']['num_replies'], ';', $context['session_var'], '=', $context['session_id'], '">', $txt['shd_ticket_reply'], '</a><br />
-						</div>';
+						<a href="', $scripturl, '?action=helpdesk;sa=reply;ticket=', $context['ticket_id'], ';num_replies=', $context['ticket']['num_replies'], ';', $context['session_var'], '=', $context['session_id'], '" class="button floatright"><span class="generic_icons next_page"></span>', $txt['shd_ticket_reply'], '</a>';
 
 			if ($context['can_quote'])
 				echo '
 						<div class="information shd_quotebutton floatright" id="shd_quotebutton">
 							<a onclick="return oQuickReply.quote(', $context['ticket']['first_msg'], ', \'', $context['session_id'], '\', \'', $context['session_var'], '\', true);" href="', $scripturl, '?action=helpdesk;sa=reply;ticket=', $context['ticket_id'], ';quote=', $context['ticket']['first_msg'], ';num_replies=', $context['ticket']['num_replies'], ';', $context['session_var'], '=', $context['session_id'], '">', $txt['shd_ticket_quote'], '</a><br />
 						</div>';
+
+			// Can I show Quickbuttons here? k thx ^^
+			echo '
+				<ul class="quickbuttons">';
+			if ($modSettings['shd_ticketnav_style'] == 'sd')
+			{
+				foreach ($context['ticket_navigation'] as $button)
+					if (!empty($button['display']))
+						echo '
+							<li>
+								<a href="', $button['url'], '"', (!empty($button['is_last']) ? ' id="last"' : ''), '', (!empty($button['onclick']) ? ' onclick="' . $button['onclick'] . '"' : ''), '><img src="', $settings['default_images_url'], '/simpledesk/', $button['icon'], '.png" alt="', $button['alt'], '" title="', $txt[$button['text']], '" /> ', $txt[$button['text']], '</a>
+							</li>';
+			}
+			elseif ($modSettings['shd_ticketnav_style'] == 'sdcompact')
+			{
+				foreach ($context['ticket_navigation'] as $button)
+					if (!empty($button['display']))
+						echo '
+							<li>
+								<a href="', $button['url'], '"', (!empty($button['is_last']) ? ' id="last"' : ''), '', (!empty($button['onclick']) ? ' onclick="' . $button['onclick'] . '"' : ''), '><img src="', $settings['default_images_url'], '/simpledesk/', $button['icon'], '.png" alt="', $button['alt'], '" title="', $txt[$button['text']], '" /></a>
+							</li>';
+			}
+			echo '
+				</ul>';
 
 			template_inline_attachments($context['ticket']['first_msg']);
 
