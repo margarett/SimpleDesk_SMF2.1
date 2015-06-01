@@ -19,7 +19,7 @@ function template_shd_admin_maint_home()
 
 	// OK, recount all the important figures.
 	echo '
-		<div class="cat_bar grid_header">
+		<div class="cat_bar">
 			<h3 class="catbg">
 				<img src="', $settings['default_images_url'], '/simpledesk/find_repair.png" alt="*">
 				', $txt['shd_admin_maint_findrepair'], '
@@ -33,8 +33,7 @@ function template_shd_admin_maint_home()
 					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 				</form>
 			</div>
-		</div>
-		<span class="lowerframe"><span></span></span><br />';
+		</div>';
 
 	// Reattribute guest posts
 	echo '
@@ -71,7 +70,7 @@ function template_shd_admin_maint_home()
 		}
 		setTimeout("checkAttributeValidity();", 500);
 		// ]]></script>
-		<div class="cat_bar grid_header">
+		<div class="cat_bar">
 			<h3 class="catbg">
 				<img src="', $settings['default_images_url'], '/simpledesk/user.png" alt="*">
 				', $txt['shd_admin_maint_reattribute'], '
@@ -111,7 +110,6 @@ function template_shd_admin_maint_home()
 				</form>
 			</div>
 		</div>
-		<span class="lowerframe"><span></span></span><br />
 		<script type="text/javascript" src="', $settings['default_theme_url'], '/scripts/suggest.js?rc5"></script>
 		<script type="text/javascript"><!-- // --><![CDATA[
 			var oAttributeMemberSuggest = new smc_AutoSuggest({
@@ -130,7 +128,7 @@ function template_shd_admin_maint_home()
 	if (!empty($context['dept_list']))
 	{
 		echo '
-		<div class="cat_bar grid_header">
+		<div class="cat_bar">
 			<h3 class="catbg">
 				<img src="', $settings['default_images_url'], '/simpledesk/movedept.png" alt="*">
 				', $txt['shd_admin_maint_massdeptmove'], '
@@ -172,8 +170,7 @@ function template_shd_admin_maint_home()
 					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 				</form>
 			</div>
-		</div>
-		<span class="lowerframe"><span></span></span><br />';
+		</div>';
 	}
 }
 
@@ -186,21 +183,18 @@ function template_shd_admin_maint_findrepairdone()
 		// Yay everything was fine.
 		echo '
 		<div class="windowbg">
-			<span class="topslice"><span></span></span>
 			<div class="content">
 				<p>', $txt['maintain_no_errors'], '</p>
 				<p class="padding">
 					<a href="', $scripturl, '?action=admin;area=helpdesk_maint;', $context['session_var'], '=', $context['session_id'], '">', $txt['shd_admin_maint_back'], '</a>
 				</p>
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>';
 	}
 	else
 	{
 		echo '
 		<div class="windowbg">
-			<span class="topslice"><span></span></span>
 			<div class="content">
 				<p>', $txt['errors_found'], '</p>';
 
@@ -233,7 +227,6 @@ function template_shd_admin_maint_findrepairdone()
 					<a href="', $scripturl, '?action=admin;area=helpdesk_maint;', $context['session_var'], '=', $context['session_id'], '">', $txt['shd_admin_maint_back'], '</a>
 				</p>
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>';
 	}
 }
@@ -244,14 +237,12 @@ function template_shd_admin_maint_reattributedone()
 
 	echo '
 		<div class="windowbg">
-			<span class="topslice"><span></span></span>
 			<div class="content">
 				<p>', $txt['shd_admin_maint_reattribute_success'], '</p>
 				<p class="padding">
 					<a href="', $scripturl, '?action=admin;area=helpdesk_maint;', $context['session_var'], '=', $context['session_id'], '">', $txt['shd_admin_maint_back'], '</a>
 				</p>
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>';
 }
 
@@ -262,14 +253,12 @@ function template_shd_admin_maint_massdeptmovedone()
 	echo '
 	<div id="admincenter">
 		<div class="windowbg">
-			<span class="topslice"><span></span></span>
 			<div class="content">
 				<p>', $txt['shd_admin_maint_massdeptmove_success'], '</p>
 				<p class="padding">
 					<a href="', $scripturl, '?action=admin;area=helpdesk_maint;', $context['session_var'], '=', $context['session_id'], '">', $txt['shd_admin_maint_back'], '</a>
 				</p>
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>
 	</div>';
 }
@@ -285,7 +274,7 @@ function template_shd_admin_maint_search()
 		</div>';
 
 	echo '
-		<div class="cat_bar grid_header">
+		<div class="cat_bar">
 			<h3 class="catbg">
 				<img src="', $settings['default_images_url'], '/simpledesk/search.png" alt="*">
 				', $txt['shd_maint_rebuild_index'], '
@@ -301,8 +290,7 @@ function template_shd_admin_maint_search()
 				</form>
 			</div>
 		</div>
-		<span class="lowerframe"><span></span></span><br />
-		<div class="cat_bar grid_header">
+		<div class="cat_bar">
 			<h3 class="catbg">
 				<img src="', $settings['default_images_url'], '/simpledesk/search.png" alt="*">
 				', $txt['shd_maint_search_settings'], '
@@ -343,7 +331,6 @@ function template_shd_admin_maint_search()
 					<input type="hidden" name="', $context['session_var'], '" value="', $context['session_id'], '">
 				</form>
 			</div>
-		</div>
-		<span class="lowerframe"><span></span></span><br />';
+		</div>';
 }
 

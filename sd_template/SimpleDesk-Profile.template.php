@@ -18,8 +18,7 @@ function template_shd_profile_main()
 	global $context, $txt, $settings, $scripturl, $modSettings;
 
 	echo '
-	<div class="tborder shd_profile_navigation">
-		<div class="cat_bar grid_header">
+		<div class="cat_bar">
 			<h3 class="catbg">
 				<img src="', $settings['default_images_url'], '/simpledesk/user.png" alt="" class="shd_icon_minihead" />
 				', sprintf($txt['shd_profile_heading'], $context['member']['name']), '
@@ -35,30 +34,21 @@ function template_shd_profile_main()
 	echo '
 				<br />
 				', $txt['shd_profile_tickets_assigned'], ': <a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=hd_showtickets">', $context['shd_numassigned'], '</a>
-				<br /><br />
-
-				<div class="description shd_showtickets floatright" id="shd_showtickets">
-					<a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=hd_showtickets">', $txt['shd_profile_view_tickets'], '</a><br />
-				</div>';
+				<div class="block floatright">
+					<a href="', $scripturl, '?action=profile;u=', $context['member']['id'], ';area=hd_showtickets" class="button"><span id="shd_showtickets"></span>', $txt['shd_profile_view_tickets'], '</a>';
 
 	if (!empty($context['can_post_proxy']))
 		echo '
-				<div class="description shd_showtickets floatright" id="shd_post_proxy">
-					<a href="', $scripturl, '?action=helpdesk;sa=newticket;proxy=', $context['member']['id'], '">', $txt['shd_profile_proxy'], '</a><br />
-				</div>';
+					<a href="', $scripturl, '?action=helpdesk;sa=newticket;proxy=', $context['member']['id'], '"><span id="shd_post_proxy" class="button"></span>', $txt['shd_profile_proxy'], '</a>';
 
 	if (!empty($context['can_post_ticket']))
 		echo '
-				<div class="description shd_showtickets floatright" id="shd_post_ticket">
-					<a href="', $scripturl, '?action=helpdesk;sa=newticket">', $txt['shd_profile_newticket'], '</a><br />
-				</div>';
+					<a href="', $scripturl, '?action=helpdesk;sa=newticket" class="button"><span id="shd_post_ticket"></span>', $txt['shd_profile_newticket'], '</a>';
 
 	echo '
-				<br /><br /><br />
+				</div>
 			</div>
-			<span class="botslice"><span></span></span>
-		</div>
-	</div>';
+		</div>';
 
 	// In helpdesk-only mode, we don't have the forum profile, so we need to display what's useful and relevant on here.
 	if (!empty($modSettings['shd_helpdesk_only']))
@@ -66,7 +56,7 @@ function template_shd_profile_main()
 		echo '
 	<br />
 	<div class="tborder shd_profile_navigation" id="tracking">
-		<div class="cat_bar grid_header">
+		<div class="cat_bar">
 			<h3 class="catbg">
 				<img src="', $settings['default_images_url'], '/simpledesk/user.png" alt="" class="shd_icon_minihead" />
 				', $txt['summary'], ' - ', $context['member']['name'], '
@@ -160,7 +150,6 @@ function template_shd_profile_main()
 		echo '
 				<br />
 			</div>
-			<span class="botslice"><span></span></span>
 		</div>
 	</div>';
 	}
@@ -193,7 +182,7 @@ function template_shd_profile_preferences()
 					var collapsed = (document.getElementById("prefheader_" + block).getAttribute("class") == "cat_bar");
 					if (collapsed)
 					{
-						document.getElementById("prefheader_" + block).setAttribute("class", "cat_bar grid_header");
+						document.getElementById("prefheader_" + block).setAttribute("class", "cat_bar");
 						document.getElementById("prefgroup_" + block).style.display = "";
 						document.getElementById("preffooter_" + block).style.display = "";
 						document.getElementById("prefexpandicon_" + block).src = ', JavaScriptEscape($settings['images_url'] . '/collapse.png'), ';
@@ -226,7 +215,7 @@ function template_shd_profile_preferences()
 		echo '
 						<br />
 						<div class="tborder">
-							<div class="cat_bar grid_header" id="prefheader_', $group, '">
+							<div class="cat_bar" id="prefheader_', $group, '">
 								<h3 class="catbg">
 									<span class="floatright">
 										<a class="permcollapse" href="#" onclick="shd_toggleblock(\'', $group, '\'); return false;">
@@ -332,7 +321,7 @@ function template_shd_profile_preferences()
 		echo '
 						<br />
 						<div class="tborder">
-							<div class="cat_bar grid_header">
+							<div class="cat_bar">
 								<h3 class="catbg">
 									', $txt['shd_profile_preferences_none_header'], '
 								</h3>
@@ -342,7 +331,6 @@ function template_shd_profile_preferences()
 								', $txt['shd_profile_preferences_none_desc'], '
 								</div>
 							</div>
-							<span class="lowerframe"><span></span></span>
 						</div>';
 
 	echo '
@@ -361,11 +349,11 @@ function template_shd_profile_show_tickets()
 							', sprintf($txt['shd_profile_show_tickets_header'], $context['member']['name']), '
 						</h3>
 					</div>
-					<p class="description">', $txt['shd_profile_show_tickets_description'], '</p>
+					<p class="information">', $txt['shd_profile_show_tickets_description'], '</p>
 				</div>';
 
 	// The navigation.
-	echo '<div class="shd_profile_show_tickets_nav">', template_button_strip($context['show_tickets_navigation']), '<br class="clear" /></div>';
+	template_button_strip($context['show_tickets_navigation']);
 
 	// Pagination
 	echo '
@@ -386,7 +374,6 @@ function template_shd_profile_show_tickets()
 		echo '
 		<div class="topic">
 			<div class="', $item['alternate'] == 0 ? 'windowbg2' : 'windowbg', ' core_posts">
-				<span class="topslice"><span></span></span>
 				<div class="content">
 					<div class="counter">', $item['counter'], '</div>
 					<div class="topic_details">
@@ -395,13 +382,12 @@ function template_shd_profile_show_tickets()
 					</div>
 					<div class="list_posts">
 						', $item['body'], '
-						<div class="description shd_replybutton floatright" id="shd_replybutton">
-							<a href="', $scripturl, '?action=helpdesk;sa=ticket;ticket=', $item['ticket'], '.0">', $txt['shd_profile_view_full_ticket'], '</a><br />
+						<div class="block floatright">
+							<a href="', $scripturl, '?action=helpdesk;sa=ticket;ticket=', $item['ticket'], '.0" class="button">', $txt['shd_profile_view_full_ticket'], '</a>
 						</div>
 					</div>
 				</div>
 				<br class="clear" />
-				<span class="botslice"><span></span></span>
 			</div>
 		</div>';
 	}
@@ -429,23 +415,22 @@ function template_shd_profile_show_notify_override()
 							', $txt['shd_profile_show_' . $context['notify_type'] . '_header'], '
 						</h3>
 					</div>
-					<p class="description">', $txt['shd_profile_show_' . $context['notify_type'] . '_description'], '</p>
+					<p class="information">', $txt['shd_profile_show_' . $context['notify_type'] . '_description'], '</p>
 				</div>';
 
 	// The navigation.
-	echo '
-				<div class="shd_profile_show_tickets_nav">', template_button_strip($context['show_tickets_navigation']), '<br class="clear" /></div>';
+	template_button_strip($context['show_tickets_navigation']);
 
 	echo '
-				<table class="shd_ticketlist" cellspacing="0" width="100%">
-					<tr class="titlebg">
-						<td width="8%" class="shd_nowrap"><img src="', $settings['default_images_url'], '/simpledesk/ticket.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket'], '</td>
-						<td width="15%" class="shd_nowrap">', $txt['shd_ticket_name'], '</td>
-						<td width="12%" class="shd_nowrap"><img src="', $settings['default_images_url'], '/simpledesk/user.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_started_by'], '</td>
-						<td width="7%" class="shd_nowrap">', $txt['shd_ticket_replies'], '</td>
-						<td width="17%" class="shd_nowrap"><img src="', $settings['default_images_url'], '/simpledesk/status.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_status'], '</td>
-						<td width="8%" class="shd_nowrap"><img src="', $settings['default_images_url'], '/simpledesk/urgency.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_urgency'], '</td>
-						<td width="22%" class="shd_nowrap"><img src="', $settings['default_images_url'], '/simpledesk/time.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_updated'], '</td>
+				<table class="table_grid">
+					<tr class="title_bar">
+						<td width="8%"><img src="', $settings['default_images_url'], '/simpledesk/ticket.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket'], '</td>
+						<td width="15%">', $txt['shd_ticket_name'], '</td>
+						<td width="12%"><img src="', $settings['default_images_url'], '/simpledesk/user.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_started_by'], '</td>
+						<td width="7%">', $txt['shd_ticket_replies'], '</td>
+						<td width="17%"><img src="', $settings['default_images_url'], '/simpledesk/status.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_status'], '</td>
+						<td width="8%"><img src="', $settings['default_images_url'], '/simpledesk/urgency.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_urgency'], '</td>
+						<td width="22%"><img src="', $settings['default_images_url'], '/simpledesk/time.png" class="shd_smallicon" alt=""> ', $txt['shd_ticket_updated'], '</td>
 					</tr>';
 
 	if (empty($context['tickets']))
@@ -457,11 +442,10 @@ function template_shd_profile_show_notify_override()
 	}
 	else
 	{
-		$use_bg2 = true;
 		foreach ($context['tickets'] as $ticket)
 		{
 			echo '
-						<tr class="windowbg', $use_bg2 ? '2' : '', '">
+						<tr class="windowbg">
 							<td width="4%" class="smalltext">', $ticket['id_ticket_display'], '</td>
 							<td class="smalltext"><a href="', $scripturl, '?action=helpdesk;sa=ticket;ticket=', $ticket['id_ticket'], '">', $ticket['subject'], '</a></td>
 							<td class="smalltext">', $ticket['ticket_starter'], '</td>
@@ -470,8 +454,6 @@ function template_shd_profile_show_notify_override()
 							<td class="smalltext">', $txt['shd_urgency_' . $ticket['urgency']], '</td>
 							<td class="smalltext">', $ticket['updated'], '</td>
 						</tr>';
-
-			$use_bg2 = !$use_bg2;
 		}
 	}
 
@@ -496,7 +478,7 @@ function template_shd_profile_permissions()
 	{
 		// Whoa, this dude's special. Tidy up and BAIL!
 		echo '
-					<p class="description">
+					<p class="information">
 						', $txt['shd_profile_permissions_all_admin'], '
 					</p>
 				</div>';
@@ -505,7 +487,7 @@ function template_shd_profile_permissions()
 
 	// Regular user: carry on, sergeant.
 	echo '
-					<p class="description">
+					<p class="information">
 						', $txt['shd_profile_permissions_description'], '
 					</p>
 				</div>';
@@ -527,9 +509,7 @@ function template_shd_profile_permissions()
 						</select>
 						<input type="submit" class="button_submit" value="', $txt['go'], '" />
 					</form>
-				</div>
-				<span class="lowerframe"><span></span></span>
-				<br />';
+				</div>';
 	// We're done?
 	if (!empty($context['dept_list_only']))
 		return;
@@ -537,17 +517,17 @@ function template_shd_profile_permissions()
 	// Now, display the roles that are attached to this user, and display the groups that make that link.
 	echo '
 				<div class="tborder">
-					<div class="cat_bar grid_header">
+					<div class="cat_bar">
 						<h3 class="catbg sd_no_margin">
 							<img src="', $settings['default_images_url'], '/simpledesk/roles.png" alt="*" />
 							', $txt['shd_roles'], '
 						</h3>
 					</div>
-					<p class="description shd_actionloginfo">
+					<p class="information">
 						', $txt['shd_profile_roles_assigned'], '
 					</p>
-					<table class="shd_ticketlist" cellspacing="0" width="100%">
-						<tr class="titlebg">
+					<table class="table_grid">
+						<tr class="title_bar">
 							<td colspan="2" width="30%">', $txt['shd_role'], '</td>
 							<td>', $txt['shd_profile_role_membergroups'], '</td>
 						</tr>';
@@ -561,11 +541,10 @@ function template_shd_profile_permissions()
 	}
 	else
 	{
-		$use_bg2 = true;
 		foreach ($context['member_roles'] as $role)
 		{
 			echo '
-						<tr class="', ($use_bg2 ? 'windowbg2' : 'windowbg'), '">
+						<tr class="windowbg">
 							<td>', !empty($context['shd_permissions']['roles'][$role['template']]['icon']) ? ('<img src="' . $settings['default_images_url'] . '/simpledesk/' . $context['shd_permissions']['roles'][$role['template']]['icon'] . '" alt="" />') : '', '</td>
 							<td>', $role['name'], '</td>
 							<td>';
@@ -582,7 +561,6 @@ function template_shd_profile_permissions()
 
 			echo '</td>
 						</tr>';
-			$use_bg2 = !$use_bg2;
 		}
 	}
 
@@ -596,23 +574,22 @@ function template_shd_profile_permissions()
 		echo '
 				<br />
 				<div class="tborder">
-					<div class="cat_bar grid_header">
+					<div class="cat_bar">
 						<h3 class="catbg sd_no_margin">
 							<img src="', $settings['default_images_url'], '/simpledesk/perm_yes.png" alt="*" />
 							', $txt['shd_profile_granted'], '
 						</h3>
 					</div>
-					<p class="description shd_actionloginfo">
+					<p class="information">
 						', $txt['shd_profile_granted_desc'], '
 					</p>
-					<table class="shd_ticketlist" cellspacing="0" width="100%">
-						<tr class="titlebg">
+					<table class="table_grid">
+						<tr class="title_bar">
 							<td colspan="2" width="60%">', $txt['shd_permissions'], '</td>
 							<td>', $txt['shd_roles'], '</td>
 						</tr>';
 
 		// Right, we're going to go by what's in the master list first.
-		$use_bg2 = true;
 		$last_permission_cat = '';
 
 		foreach ($context['shd_permissions']['permission_list'] as $permission => $details)
@@ -651,7 +628,7 @@ function template_shd_profile_permissions()
 			}
 
 			echo '
-						<tr class="', ($use_bg2 ? 'windowbg2' : 'windowbg'), '">
+						<tr class="windowbg">
 							<td><img src="', shd_image_url($icon), '" alt="" /></td>';
 
 			if ($ownany)
@@ -686,15 +663,13 @@ function template_shd_profile_permissions()
 				if ($done_first)
 					echo ', ';
 
-				echo '<span class="shd_nowrap"><img src="', $settings['default_images_url'], '/simpledesk/', $context['shd_permissions']['roles'][$context['member_roles'][$role]['template']]['icon'], '" alt="" />&nbsp;', $context['member_roles'][$role]['name'], '</span>';
+				echo '<span><img src="', $settings['default_images_url'], '/simpledesk/', $context['shd_permissions']['roles'][$context['member_roles'][$role]['template']]['icon'], '" alt="" />&nbsp;', $context['member_roles'][$role]['name'], '</span>';
 				$done_first = true;
 			}
 
 			echo '
 							</td>
 						</tr>';
-
-			$use_bg2 = !$use_bg2;
 		}
 
 		echo '
@@ -711,15 +686,15 @@ function template_shd_profile_actionlog()
 
 	echo '
 				<div class="tborder">
-					<div class="cat_bar grid_header">
+					<div class="cat_bar">
 						<h3 class="catbg" id="ticket_log_header">
 							<img src="', $settings['default_images_url'], '/simpledesk/log.png" class="icon" alt="*" />
 							', sprintf($txt['shd_profile_log'], $context['member']['name']), '
 							<span class="smalltext">(', $context['action_log_count'] == 1 ? $txt['shd_profile_log_count_one'] : sprintf($txt['shd_profile_log_count_more'], $context['action_log_count']) , ')</span>
 						</h3>
 					</div>
-					<table class="shd_ticketlist" id="ticket_log" cellspacing="0" width="100%">
-						<tr class="titlebg">
+					<table class="table_grid" id="ticket_log">
+						<tr class="title_bar">
 							<td width="15%">
 								<img src="', $settings['default_images_url'], '/simpledesk/time.png" class="shd_smallicon" alt="" />
 								', $txt['shd_ticket_log_date'], '
@@ -737,19 +712,16 @@ function template_shd_profile_actionlog()
 						</tr>';
 	else
 	{
-		$use_bg2 = true; // start with windowbg2 to differentiate between that and windowbg2
 		foreach ($context['action_log'] as $action)
 		{
 			echo '
-						<tr class="', ($use_bg2 ? 'windowbg2' : 'windowbg'), '">
+						<tr class="windowbg">
 							<td class="smalltext">', $action['time'], '</td>
 							<td class="smalltext">
 								<img src="', $settings['default_images_url'], '/simpledesk/', $action['action_icon'], '" alt="" class="shd_smallicon" />
 								', $action['action_text'], '
 							</td>
 						</tr>';
-
-			$use_bg2 = !$use_bg2;
 		}
 	}
 
@@ -790,7 +762,6 @@ function template_shd_profile_navigation_above()
 					</ul>
 					', !empty($options['use_sidebar_menu']) ? '<br class="clear" />' : '', '
 				</div>
-				<span class="lowerframe"><span></span></span>
 			</div>
 		</div>
 		', !empty($options['use_sidebar_menu']) ? '<br />' : '', '

@@ -20,12 +20,7 @@ function template_ticket_post()
 {
 	global $context;
 
-	// Back to the helpdesk.
-	echo '
-		<div class="floatleft">
-			', template_button_strip(array($context['navigation']['back']), 'bottom'), '
-		</div><br class="clear" /><br />';
-
+	template_button_strip(array($context['navigation']['back']));
 	template_preview();
 	template_ticket_info();
 	template_ticket_subjectbox();
@@ -88,18 +83,18 @@ function template_ticket_info()
 
 	echo '
 			<form action="', $context['ticket_form']['form_action'], '" method="post" accept-charset="', $context['character_set'], '" name="postmodify" id="postmodify" onsubmit="', 'submitonce(this);smc_saveEntities(\'postmodify\', [\'subject\', \'', $context['post_box_name'], '\'], \'field\');" enctype="multipart/form-data" style="margin: 0;">
-			<div class="cat_bar grid_header">
+			<div class="cat_bar">
 				<h3 class="catbg">
 					<img src="', $settings['default_images_url'], '/simpledesk/ticket.png" alt="x" /> ', $context['ticket_form']['form_title'], '
 				</h3>
 			</div>
-			<div class="windowbg">
+			<div class="roundframe">
 				<div class="content shd_ticket">
 					<div class="shd_ticket_side_column">';
 
 	// General ticket details
 	echo '
-					<div class="information shd_ticketdetails">
+					<div class="shd_ticketdetails">
 						<strong><img src="', $settings['default_images_url'], '/simpledesk/details.png" alt="" class="shd_smallicon" /> ', $txt['shd_ticket_details'], '</strong>
 						<hr />
 						<ul class="reset">';
@@ -157,7 +152,6 @@ function template_ticket_custom_fields()
 	echo '
 				<div class="information shd_customfields" id="shd_customfields"', empty($context['ticket_form']['dept']) ? ' style="display:none;"' : '', '>';
 
-		// Loop through each custom field
 		// Loop through each custom field
 		// See also template_ticket_subjectbox() for the department selector which affects these.
 		foreach ($context['ticket_form']['custom_fields'][$context['ticket_form']['custom_fields_context']] as $field)
@@ -410,8 +404,7 @@ function template_ticket_subjectbox()
 	}
 
 	echo '
-						<hr /><br />
-							';
+						<hr /><br />';
 }
 
 function template_ticket_proxy_js()
@@ -490,7 +483,7 @@ function template_ticket_shd_replyarea()
 	echo '
 			<div class="tborder">
 				<div class="title_bar">
-					<h3 class="titlebg grid_header">
+					<h3 class="titlebg">
 						<img src="', $settings['default_images_url'], '/simpledesk/respond.png" alt="x" />
 						', !empty($context['ticket_form']['form_title']) ? $context['ticket_form']['form_title'] : $txt['shd_reply_ticket'], '
 					</h3>
@@ -503,7 +496,6 @@ function template_ticket_shd_replyarea()
 		echo '
 					</div>
 				</div>
-				<span class="lowerframe"><span></span></span>
 			</div>
 			<br />';
 }
@@ -522,7 +514,7 @@ function template_ticket_postbox()
 	{
 		$width = round(((int) $editor_context['width']) / 0.988, 1);
 		echo '
-						<div style="width: ', $width, '%;">', template_control_richedit($context['post_box_name'], 'shd_smileybox', 'shd_bbcbox'), '</div>';
+						', template_control_richedit($context['post_box_name'], 'shd_smileybox', 'shd_bbcbox'), '';
 	}
 	// Editor width isn't proportional, presumably we don't care.
 	else
@@ -601,7 +593,6 @@ function template_ticket_footer()
 					</div>
 				</div>
 				<br class="clear" />
-				<span class="botslice"><span></span></span>
 			</div>
 			<br />';
 }
@@ -614,7 +605,7 @@ function template_preview()
 	{
 		echo '
 			<div class="tborder">
-			<div class="title_bar grid_header">
+			<div class="title_bar">
 				<h3 class="titlebg">
 					<img src="', $settings['default_images_url'], '/simpledesk/preview.png" alt="x" />
 					', !empty($context['ticket_form']['preview']['title']) ? $context['ticket_form']['preview']['title'] : $txt['preview'], '
@@ -625,7 +616,6 @@ function template_preview()
 					', $context['ticket_form']['preview']['body'], '
 				</div>
 			</div>
-			<span class="lowerframe"><span></span></span>
 			</div>
 			<br />';
 	}
@@ -636,7 +626,7 @@ function template_ticket_additional_options()
 	global $context, $options, $txt, $modSettings, $settings;
 
 	echo '
-					<div class="information shd_reply_attachments" id="shd_attach_container"', !empty($context['shd_display']) ? ' style="display:none;"' : '', '>
+					<div id="postAdditionalOptionsHeader"', !empty($context['shd_display']) ? ' style="display:none;"' : '', '>
 						<ul class="post_options">';
 
 	foreach ($context['ticket_form']['additional_opts'] as $key => $details)
@@ -647,8 +637,7 @@ function template_ticket_additional_options()
 	}
 
 	echo '
-						</ul>
-						<hr />';
+						</ul>';
 
 	if (empty($context['current_attachments']) && empty($context['ticket_form']['do_attach']))
 	{
@@ -805,26 +794,22 @@ function template_ticket_do_replies()
 
 	echo '
 		<div class="tborder">
-		<div class="title_bar grid_header">
+		<div class="title_bar">
 			<h3 class="titlebg">
 				<img src="', $settings['default_images_url'], '/simpledesk/replies.png" alt="x" /> ', $txt['shd_ticket_replies'], '
 			</h3>
 		</div>
-		<div class="roundframe" id="replies">
-			<div class="content">';
+		<div id="replies" class="content">';
 
 	if (!empty($reply_request))
 	{
 		while ($reply = $context['get_replies']())
 		{
 			echo '
-					<div class="description shd_reply" id="reply', $reply['id'], '">
-								<span class="floatleft shd_posterinfo">
-									<strong class="shd_postername">
-										', $reply['member']['link'], '
-									</strong>
-									<br />
-									', $reply['member']['group'], '<br class="shd_groupmargin" />';
+					<div class="windowbg" id="reply', $reply['id'], '">
+						<div class="poster">
+							<h4>', $reply['member']['link'], '</h4>
+								', $reply['member']['group'], '<br class="shd_groupmargin" />';
 
 			if (!empty($modSettings['shd_display_avatar']) && empty($options['show_no_avatars']) && !empty($reply['member']['avatar']['image']))
 					echo '
@@ -838,8 +823,8 @@ function template_ticket_do_replies()
 							<img src="', $settings['default_images_url'] . '/simpledesk/staff.png" class="shd_smallicon" title="', $txt['shd_ticket_staff'], '" alt="', $txt['shd_ticket_staff'], '" />';
 
 			echo '
-						</span>
-						<div class="shd_replyarea">
+						</div>
+						<div class="postarea">
 							<div class="smalltext">
 								<span class="floatright shd_ticketlinks">';
 
@@ -895,7 +880,6 @@ function template_ticket_do_replies()
 	echo '
 				</div>
 			</div>
-			<span class="lowerframe"><span></span></span>
 		</div>';
 }
 
@@ -933,9 +917,7 @@ function template_shd_thank_posting()
 			</h3>
 		</div>
 		<div class="windowbg">
-			<span class="topslice"><span></span></span>
 			<div class="padding">', $context['page_body'], '</div>
-			<span class="botslice"><span></span></span>
 		</div>
 	</div>
 	<br class="clear" />';
