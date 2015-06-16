@@ -1443,7 +1443,7 @@ function shd_setup_replies($first_msg)
 	}
 }
 
-function shd_postbox($id, $message, $buttons, $width = '70%')
+function shd_postbox($id, $message, $buttons, $width = '100%')
 {
 	global $context, $txt, $modSettings;
 	$editorOptions = array(
@@ -1452,10 +1452,10 @@ function shd_postbox($id, $message, $buttons, $width = '70%')
 		'labels' => $buttons,
 		'preview_type' => 0,
 		'width' => $width,
-		'disable_smiley_box' => empty($modSettings['shd_allow_ticket_bbc']) || $context['ticket_form']['disable_smileys'],
+		//'disable_smiley_box' => empty($modSettings['shd_allow_ticket_bbc']) || $context['ticket_form']['disable_smileys'],
 	);
-	if (empty($modSettings['shd_allow_ticket_bbc']))
-		$modSettings['disable_wysiwyg'] = 1;
+	//if (empty($modSettings['shd_allow_ticket_bbc']))
+	//	$modSettings['disable_wysiwyg'] = 1;
 
 	// Hide any disabled tags.
 	if (!empty($modSettings['shd_enabled_bbc']))

@@ -722,10 +722,9 @@ function shd_view_ticket()
 		aButtonOps: { up: "increase", down: "decrease" }
 	});';
 
-	if (!empty($options['display_quick_reply']))
 		$context['html_headers'] .= '
 	var oQuickReply = new QuickReply({
-		bDefaultCollapsed: ' . (!empty($options['display_quick_reply']) && $options['display_quick_reply'] == 2 ? 'false' : 'true') .  ',
+		bDefaultCollapsed: false,
 		iTicketId: ' . $context['ticket_id'] . ',
 		iStart: ' . $context['start'] . ',
 		sScriptUrl: smf_scripturl,
@@ -750,18 +749,19 @@ function shd_view_ticket()
 		sFooterId: "additional_info_footer",
 	});';
 
-	if (!empty($options['display_quick_reply']) && $context['can_go_advanced'])
+/*
+	if ($context['can_go_advanced'])
 		$context['html_headers'] .= '
 	function goAdvanced()
 	{
-		document.getElementById("shd_bbcbox").style.display = ' . (!empty($modSettings['shd_allow_ticket_bbc']) ? '""' : '"none"') . ';
-		document.getElementById("shd_smileybox").style.display = ' . (!empty($modSettings['shd_allow_ticket_smileys']) ? '""' : '"none"') . ';
+		document.getElementById("sceditor-group").style.display = ' . (!empty($modSettings['shd_allow_ticket_bbc']) ? '""' : '"none"') . ';
+		document.getElementById("sceditor-insertemoticon").style.display = ' . (!empty($modSettings['shd_allow_ticket_smileys']) ? '""' : '"none"') . ';
 		document.getElementById("shd_attach_container").style.display = ' . (!empty($context['ticket_form']['do_attach']) ? '""' : '"none"') . ';
 		document.getElementById("shd_goadvancedbutton").style.display = "none";' . (!empty($context['controls']['richedit']['shd_message']['rich_active']) ? '
 		oEditorHandle_shd_message.toggleView(true);' : '') . '
 	}
 	';
-
+*/
 	$context['html_headers'] .= '
 	// ]' . ']></script>';
 
