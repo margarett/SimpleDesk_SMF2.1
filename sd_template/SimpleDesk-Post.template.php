@@ -673,14 +673,18 @@ function template_ticket_additional_options()
 			foreach ($context['current_attachments'] as $attachment)
 				echo '
 							<dd class="smalltext">
-								<label for="attachment_', $attachment['id'], '"><input type="checkbox" id="attachment_', $attachment['id'], '" name="attach_del[]" value="', $attachment['id'], '"', empty($attachment['unchecked']) ? ' checked="checked"' : '', ' class="input_check" onclick="javascript:oAttach.checkActive();" /> ', $attachment['name'], '</label>
+								<label for="attachment_', $attachment['id'], '"><input type="checkbox" id="attachment_', $attachment['id'], '" name="attach_del[]" value="', $attachment['id'], '"', empty($attachment['unchecked']) ? ' checked' : '', ' class="input_check"> ', $attachment['name'],
+								!empty($attachment['size']) ? sprintf($txt['attach_kb'], comma_format($attachment['size'] / 1024)) : '', '
 							</dd>';
 		}
 		else
 		{
 			foreach ($context['current_attachments'] as $attachment)
 				echo '
-							<dd class="smalltext">', $attachment['name'], '</dd>';
+							<dd class="smalltext">
+								', $attachment['name'],
+								!empty($attachment['size']) ? sprintf($txt['attach_kb'], comma_format($attachment['size'] / 1024)) : '', '
+							</dd>';
 		}
 
 		echo '

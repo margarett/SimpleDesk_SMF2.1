@@ -717,26 +717,6 @@ function shd_helpdesk_listing()
 	if (!empty($context['shd_permission']))
 		shd_is_allowed_to($context['shd_permission']);
 
-	// So, we want the [new] icon. Where is it?
-	$newimgpaths = array(
-		$settings['theme_dir'] . '/images/' . $language => $settings['lang_images_url'],
-		$settings['theme_dir'] . '/images/english' => $settings['images_url'] . '/english',
-		$settings['default_theme_dir'] . '/images/' . $language => $settings['default_images_url'] . '/' . $language,
-	);
-	$files = array('new.gif', 'new.png');
-	$context['new_posts_image'] = $settings['default_images_url'] . '/english/new.gif'; // likely default, but we'll check the theme etc first just in case.
-	foreach ($newimgpaths as $physicalpath => $urlpath)
-	{
-		foreach ($files as $file)
-		{
-			if (file_exists($physicalpath . '/' . $file))
-			{
-				$context['new_posts_image'] = $urlpath . '/' . $file;
-				break 2;
-			}
-		}
-	}
-
 	$block_list = array_keys($context['ticket_blocks']);
 	$primary_url = '?action=helpdesk;sa=' . $_REQUEST['sa'];
 

@@ -1560,7 +1560,7 @@ function shd_load_attachments()
 
 	// Get existing attachments
 	$query = shd_db_query('', '
-		SELECT a.id_attach, a.filename
+		SELECT a.id_attach, a.filename, a.size
 		FROM {db_prefix}attachments AS a
 			INNER JOIN {db_prefix}helpdesk_attachments AS hda ON (a.id_attach = hda.id_attach)
 		WHERE ' . ($modSettings['shd_attachments_mode'] == 'ticket' ? 'hda.id_ticket = {int:ticket}' : 'hda.id_msg = {int:msg}') . '
@@ -1577,6 +1577,7 @@ function shd_load_attachments()
 		$context['current_attachments'][] = array(
 			'id' => $row['id_attach'],
 			'name' => preg_replace('~&amp;#(\\d{1,7}|x[0-9a-fA-F]{1,6});~', '&#\\1;', htmlspecialchars($row['filename'])),
+			'size' => (int)$row['size'],
 			'can_delete' => $deleteable,
 		);
 
